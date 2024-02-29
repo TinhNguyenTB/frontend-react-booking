@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { store, persistor } from './redux/store';
+import IntlProviderWrapper from './hoc/IntlProviderWrapper';
+import { PersistGate } from 'redux-persist/integration/react'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <IntlProviderWrapper>
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
+      </IntlProviderWrapper>
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
