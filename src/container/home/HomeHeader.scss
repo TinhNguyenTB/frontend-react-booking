@@ -1,6 +1,5 @@
 .home-header-container {
     height          : 60px;
-    width           : 100%;
     padding         : 0 40px;
     position        : sticky;
     top             : 0;
@@ -16,6 +15,10 @@
             width      : 20%;
             display    : flex;
             align-items: center;
+
+            .header-menu {
+                font-size: 26px;
+            }
 
             .header-logo {
                 height     : 100%;
@@ -35,7 +38,8 @@
             .child-content {
                 .subs-title {
                     font-weight: 400;
-                    font-size  : 12px;
+                    margin-top : 4px;
+                    font-size  : 13px;
                 }
             }
         }
@@ -51,10 +55,7 @@
                 display      : flex;
                 align-items  : center;
                 cursor       : pointer;
-
-                i {
-                    margin-right: 5px;
-                }
+                gap          : 10px;
             }
 
             .language-vi {

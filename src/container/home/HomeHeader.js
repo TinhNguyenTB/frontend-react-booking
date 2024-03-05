@@ -4,7 +4,7 @@ import { LANGUAGES } from '../../utils/constant';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLanguageApp } from '../../redux/actions/appActions'
 import { useNavigate } from 'react-router-dom';
-import { MenuOutlined } from '@ant-design/icons';
+import { MenuOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import logo from '../../assets/logo.svg'
 
 const HomeHeader = () => {
@@ -24,8 +24,8 @@ const HomeHeader = () => {
             <div className='home-header-container'>
                 <div className='home-header-content'>
                     <div className='left-content'>
-                        <MenuOutlined />
-                        <img className='header-logo' src={logo} onClick={() => returnToHome()} />
+                        <MenuOutlined className='header-menu' />
+                        <img className='header-logo' alt='' src={logo} onClick={() => returnToHome()} />
                     </div>
                     <div className='center-content'>
                         <div className='child-content'>
@@ -47,7 +47,7 @@ const HomeHeader = () => {
                     </div>
                     <div className='right-content'>
                         <div className='support'>
-                            <i className='fas fa-question-circle'></i>
+                            <QuestionCircleOutlined />
                             <FormattedMessage id="homeheader.support" />
                         </div>
                         <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}>

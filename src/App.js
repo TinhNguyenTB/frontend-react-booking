@@ -1,13 +1,12 @@
-import Login from './container/auth/Login';
+import { Routes, Route } from 'react-router-dom';
 import HomeHeader from './container/home/HomeHeader';
 
 function App() {
 
   return (
-    <div className="App">
-      {/* <Login /> */}
-      <HomeHeader></HomeHeader>
-    </div>
+    <Routes>
+      <Route path='/' element={<HomeHeader />} />
+    </Routes>
   );
 }
 
