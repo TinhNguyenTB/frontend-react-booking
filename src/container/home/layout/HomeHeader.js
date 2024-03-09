@@ -80,8 +80,6 @@ const HomeHeader = (props) => {
                         </div>
                         <div className='banner banner2'>
                         </div>
-                        <div className='banner banner3' >
-                        </div>
                         <div className='banner banner4' >
                         </div>
                     </Carousel>
