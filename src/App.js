@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-import HomeHeader from './container/home/HomeHeader';
+import HomePage from './container/home/HomePage';
 
 function App() {
 
   return (
     <Routes>
-      <Route path='/' element={<HomeHeader />} />
+      <Route path='/' element={<HomePage />} />
     </Routes>
   );
 }

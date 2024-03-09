@@ -1,13 +1,14 @@
 import { FormattedMessage } from 'react-intl';
 import './HomeHeader.scss';
-import { LANGUAGES } from '../../utils/constant';
+import { LANGUAGES } from '../../../utils/constant';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeLanguageApp } from '../../redux/actions/appActions'
+import { changeLanguageApp } from '../../../redux/actions/appActions'
 import { useNavigate } from 'react-router-dom';
 import { MenuOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import logo from '../../assets/logo.svg'
+import logo from '../../../assets/logo.svg'
+import { Carousel, Col, Row } from 'antd'
 
-const HomeHeader = () => {
+const HomeHeader = (props) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     let language = useSelector(state => state.app.language)
@@ -15,6 +16,7 @@ const HomeHeader = () => {
     const returnToHome = () => {
         navigate('/');
     }
+
     const changeLanguage = (language) => {
         dispatch(changeLanguageApp(language))
     }
@@ -25,7 +27,7 @@ const HomeHeader = () => {
                 <div className='home-header-content'>
                     <div className='left-content'>
                         <MenuOutlined className='header-menu' />
-                        <img className='header-logo' alt='' src={logo} onClick={() => returnToHome()} />
+                        <img className='header-logo' alt='logo' src={logo} onClick={() => returnToHome()} />
                     </div>
                     <div className='center-content'>
                         <div className='child-content'>
@@ -65,6 +67,28 @@ const HomeHeader = () => {
                     </div>
                 </div>
             </div>
+            {/* {
+                props.isShowBanner === true && */}
+            <Row justify='center' style={{ marginTop: '1rem' }}>
+                <Col xs={24} sm={24} md={20} xl={16}>
+                    <Carousel
+                        autoplay
+                        autoplaySpeed={4000}
+                        effect='fade'
+                    >
+                        <div className='banner banner1'>
+                        </div>
+                        <div className='banner banner2'>
+                        </div>
+                        <div className='banner banner3' >
+                        </div>
+                        <div className='banner banner4' >
+                        </div>
+                    </Carousel>
+                </Col>
+            </Row>
+
+            {/* } */}
         </div>
 
     )
