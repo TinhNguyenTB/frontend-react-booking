@@ -1,9 +1,9 @@
 import axios from '../configAxios';
 
-const handleLogin = (email, password) => {
-    return axios.post('/api/login', { email, password })
+const getAllSpecialty = () => {
+    return axios.get(`/api/get-all-specialty`);
 }
 
 export {
-    handleLogin
+    getAllSpecialty
 }

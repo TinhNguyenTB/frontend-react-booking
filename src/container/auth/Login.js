@@ -1,6 +1,6 @@
 import { Form, Input, Button, Row, Col, Typography, message } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
-import { handleLogin } from '../../services/userService';
+import { handleLogin } from '../../services/adminService';
 import './Login.scss'
 
 const Login = () => {

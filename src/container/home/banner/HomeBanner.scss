@@ -1,0 +1,24 @@
+* {
+    margin : 0;
+    padding: 0;
+}
+
+.banner {
+    background-size    : cover;
+    background-position: center;
+    background-repeat  : no-repeat;
+    width              : 100%;
+    height             : 50vh;
+
+    &.banner1 {
+        background-image: url('../../../assets/image-carousel1.png');
+    }
+
+    &.banner2 {
+        background-image: url('../../../assets/image-carousel2.png');
+    }
+
+    &.banner4 {
+        background-image: url('../../../assets/image-carousel4.png');
+    }
+}
