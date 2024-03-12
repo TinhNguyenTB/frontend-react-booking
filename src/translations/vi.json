@@ -56,7 +56,8 @@
     },
     "home-page": {
         "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
-        "more-info": "Xem thêm"
+        "more-info": "Xem thêm",
+        "popular-specialties": "Chuyên khoa phổ biến"
     },
     "manage-schedule": {
         "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
@@ -91,6 +92,10 @@
             "btn-cancel": "Hủy",
             "price-booking": "Miễn phí đặt lịch",
             "price": "Giá khám: "
+        },
+        "verify-email": {
+            "success": "Xác nhận lịch hẹn thành công!",
+            "failed": "Lịch hẹn không tồn tại hoặc đã được xác nhận."
         }
     },
     "admin": {
@@ -105,7 +110,9 @@
             "province": "Tỉnh thành",
             "nameClinic": "Tên phòng khám",
             "addressClinic": "Địa chỉ phòng khám",
-            "note": "Ghi chú"
+            "note": "Ghi chú",
+            "specialty": "Chuyên khoa",
+            "clinic": "Phòng khám"
         }
     }
 }

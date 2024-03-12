@@ -2,3 +2,16 @@
     margin : 0;
     padding: 0;
 }
+
+.section-body {
+    .specialty-child {
+        cursor    : pointer;
+        text-align: center;
+
+        .specialty-name {
+            &:hover {
+                color: rgb(135, 219, 226);
+            }
+        }
+    }
+}

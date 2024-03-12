@@ -56,7 +56,8 @@
     },
     "home-page": {
         "outstanding-doctor": "Doctor featured last week",
-        "more-info": "See more"
+        "more-info": "See more",
+        "popular-specialties": "Popular specialties"
     },
     "manage-schedule": {
         "title": "Manage doctor's medical examination plans",
@@ -91,6 +92,10 @@
             "btn-cancel": "Cancel",
             "price-booking": "Free appointment",
             "price": "Examination price: "
+        },
+        "verify-email": {
+            "success": "Appointment confirmed successfully!",
+            "failed": "Appointment schedule does not exist or has been confirmed."
         }
     },
     "admin": {
@@ -105,7 +110,9 @@
             "province": "Province",
             "nameClinic": "Clinic's name",
             "addressClinic": "Clinic's address",
-            "note": "Note"
+            "note": "Note",
+            "specialty": "Specialties",
+            "clinic": "Clinics"
         }
     }
 }

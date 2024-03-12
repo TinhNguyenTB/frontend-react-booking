@@ -31,19 +31,19 @@ const HomeHeader = (props) => {
                     </div>
                     <div className='center-content'>
                         <div className='child-content'>
-                            <div><b><FormattedMessage id="homeheader.speciality" /> </b></div>
+                            <div className='menu-title'><b><FormattedMessage id="homeheader.speciality" /> </b></div>
                             <div className='subs-title'><FormattedMessage id="homeheader.searchdoctor" /></div>
                         </div>
                         <div className='child-content'>
-                            <div><b><FormattedMessage id="homeheader.health-facility" /></b></div>
+                            <div className='menu-title'><b><FormattedMessage id="homeheader.health-facility" /></b></div>
                             <div className='subs-title'><FormattedMessage id="homeheader.select-room" /></div>
                         </div>
                         <div className='child-content'>
-                            <div><b><FormattedMessage id="homeheader.doctor" /></b></div>
+                            <div className='menu-title'><b><FormattedMessage id="homeheader.doctor" /></b></div>
                             <div className='subs-title'><FormattedMessage id="homeheader.select-doctor" /></div>
                         </div>
                         <div className='child-content'>
-                            <div><b><FormattedMessage id="homeheader.fee" /></b></div>
+                            <div className='menu-title'><b><FormattedMessage id="homeheader.fee" /></b></div>
                             <div className='subs-title'><FormattedMessage id="homeheader.check-health" /></div>
                         </div>
                     </div>

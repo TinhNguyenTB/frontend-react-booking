@@ -5,12 +5,11 @@
 
 .home-header-container {
     height          : 4rem;
-    padding         : 0 2rem;
+    padding         : 0.5rem 2rem;
     position        : sticky;
     top             : 0;
     background-color: white;
     z-index         : 100;
-
 
     .home-header-content {
         width  : 100%;
@@ -49,10 +48,14 @@
             align-items    : center;
 
             .child-content {
+                .menu-title {
+                    font-size: 1.2rem;
+                }
+
                 .subs-title {
                     font-weight: 400;
                     margin-top : 0.3rem;
-                    font-size  : 0.8rem;
+                    font-size  : 1rem;
                 }
             }
         }
