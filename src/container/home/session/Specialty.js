@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import './Specialty.scss'
 import { useEffect, useState } from 'react';
-import { getAllSpecialty } from '../../../services/userService';
+import { getAllSpecialty } from '../../../services/appService';
 import Slider from "react-slick";
 import { FormattedMessage } from 'react-intl';
 import { Button } from 'antd';
@@ -47,12 +47,13 @@ const Specialty = (props) => {
                                         <div className='bg-image'
                                             style={{ backgroundImage: `url(${item.image})` }}
                                         />
-                                        <span className='specialty-name'>{item.name}</span>
+                                        <div className='specialty-name'>
+                                            <span>{item.name}</span>
+                                        </div>
                                     </div>
                                 )
                             })
                         }
-
                     </Slider>
                 </div>
             </div>

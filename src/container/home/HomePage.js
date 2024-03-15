@@ -1,6 +1,7 @@
 import './HomePage.scss'
 import HomeBanner from "./banner/HomeBanner"
 import Layout from "./layout/Layout"
+import OutStandingDoctor from './session/OutStandingDoctor'
 import Specialty from "./session/Specialty"
 
 const HomePage = () => {
@@ -15,6 +16,7 @@ const HomePage = () => {
         <Layout>
             <HomeBanner />
             <Specialty settings={setting} />
+            <OutStandingDoctor settings={setting} />
         </Layout>
     )
 }

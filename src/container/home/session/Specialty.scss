@@ -1,7 +1,4 @@
-* {
-    margin : 0;
-    padding: 0;
-}
+@import "../../../styles/styles.scss";
 
 .section-body {
     .specialty-child {
@@ -9,8 +6,11 @@
         text-align: center;
 
         .specialty-name {
+            padding-top: 1rem;
+            font-size  : 1.2rem;
+
             &:hover {
-                color: rgb(135, 219, 226);
+                color: $color-main;
             }
         }
     }

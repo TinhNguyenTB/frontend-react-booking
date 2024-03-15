@@ -3,7 +3,7 @@ import actionTypes from '../actions/actionTypes';
 
 const initialState = {
     language: 'vi',
-
+    topDoctors: [],
 }
 
 const appReducer = (state = initialState, action) => {
@@ -13,6 +13,17 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 language: action.language
+            }
+        // fetch top doctor
+        case actionTypes.FETCH_TOP_DOCTORS_SUCCESS:
+            state.topDoctors = action.dataDoctors
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_TOP_DOCTORS_FAILED:
+            state.topDoctors = []
+            return {
+                ...state,
             }
         default:
             return state;

@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import './styles/styles.scss';
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

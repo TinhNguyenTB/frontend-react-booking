@@ -1,0 +1,27 @@
+@import "../../../styles/styles.scss";
+
+.section-outstanding-doctor {
+
+    .section-customize {
+        cursor: pointer;
+
+        .customize-border {
+
+            .outer-bg {
+                display        : flex;
+                justify-content: center;
+                margin-bottom  : 0.5rem;
+            }
+
+            .name-position {
+                text-align : center;
+                padding-top: 1rem;
+                font-size  : 1.1rem;
+
+                span:hover {
+                    color: $color-main;
+                }
+            }
+        }
+    }
+}
