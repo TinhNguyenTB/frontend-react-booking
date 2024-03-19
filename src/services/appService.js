@@ -7,6 +7,15 @@ const getTopDoctorHomeService = (limit) => {
     return axios.get(`/api/top-doctor-home?limit=${limit}`)
 }
 
+const getDetailInfoDoctor = (id) => {
+    return axios.get(`/api/get-detail-doctor-by-id?id=${id}`)
+}
+
+const getExtraInfoDoctorById = (doctorId) => {
+    return axios.get(`/api/get-extra-infor-doctor-by-id?doctorId=${doctorId}`)
+}
+
 export {
-    getAllSpecialty, getTopDoctorHomeService
+    getAllSpecialty,
+    getTopDoctorHomeService, getDetailInfoDoctor, getExtraInfoDoctorById
 }

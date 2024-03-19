@@ -1,8 +1,10 @@
+@import "../../../styles/styles.scss";
+
 .home-footer-container {
     margin-top      : 1rem;
     padding         : 2rem 10rem;
     width           : 100%;
-    background-color: rgb(242, 242, 242);
+    background-color: $color-bg;
 
     .footer-column {
         padding: 0 1rem;

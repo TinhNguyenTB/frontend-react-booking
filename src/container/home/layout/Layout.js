@@ -1,5 +1,6 @@
-import HomeHeader from './HomeHeader'
-import HomeFooter from './HomeFooter'
+import React from 'react';
+import HomeHeader from './HomeHeader';
+import HomeFooter from './HomeFooter';
 
 const Layout = ({ children }) => {
     return (
@@ -8,7 +9,7 @@ const Layout = ({ children }) => {
             {children}
             <HomeFooter />
         </>
-    )
-}
+    );
+};
 
-export default Layout
+export default Layout;
