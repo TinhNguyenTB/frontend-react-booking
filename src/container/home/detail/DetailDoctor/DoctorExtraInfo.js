@@ -19,10 +19,6 @@ const DoctorExtraInfo = (props) => {
             }
         }
     }
-    useEffect(() => {
-        setDoctorInfo()
-        // eslint-disable-next-line
-    }, [])
 
     useEffect(() => {
         setDoctorInfo();

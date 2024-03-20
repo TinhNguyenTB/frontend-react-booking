@@ -6,6 +6,7 @@ import Layout from '../../layout/Layout';
 import { LANGUAGES } from '../../../../utils/constant';
 import './DetailDoctor.scss';
 import DoctorExtraInfo from './DoctorExtraInfo';
+import DoctorSchedule from './DoctorSchedule';
 
 const DetailDoctor = () => {
     const [detailDoctor, setDetailDoctor] = useState({});
@@ -57,9 +58,9 @@ const DetailDoctor = () => {
                 </div>
                 <div className='schedule-doctor'>
                     <div className='content-left'>
-                        {/* <DoctorSchedule
-                                doctorIdFromParent={currentDoctorId}
-                            /> */}
+                        <DoctorSchedule
+                            doctorIdFromParent={currentDoctorId}
+                        />
                     </div>
                     <div className='content-right'>
                         <DoctorExtraInfo
