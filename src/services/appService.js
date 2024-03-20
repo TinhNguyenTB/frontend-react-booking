@@ -23,8 +23,12 @@ const getAllCodeService = (inputType) => {
     return axios.get(`/api/allcode?type=${inputType}`)
 }
 
+const getProfileDoctorById = (doctorId) => {
+    return axios.get(`/api/get-profile-doctor-by-id?doctorId=${doctorId}`)
+}
+
 export {
     getAllSpecialty,
-    getTopDoctorHomeService, getDetailInfoDoctor, getExtraInfoDoctorById, getScheduleDoctorByDate,
+    getTopDoctorHomeService, getDetailInfoDoctor, getExtraInfoDoctorById, getScheduleDoctorByDate, getProfileDoctorById,
     getAllCodeService
 }

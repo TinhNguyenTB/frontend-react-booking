@@ -7,6 +7,7 @@ import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGender } from '../../../../../redux/actions/userActions';
 import { postPatientBookAppointment } from '../../../../../services/userService';
+import ProfileDoctor from '../ProfileDoctor';
 
 const BookingModal = (props) => {
     const dispatch = useDispatch();
@@ -150,12 +151,12 @@ const BookingModal = (props) => {
         >
             <div className='booking-modal-container'>
                 <div className='doctor-infor'>
-                    {/* <ProfileDoctor
-                                    doctorId={doctorId}
-                                    isShowDescriptionDoctor={false}
-                                    isShowPrice={true}
-                                    dataTime={dataTime}
-                                /> */}
+                    <ProfileDoctor
+                        doctorId={doctorId}
+                        isShowDescriptionDoctor={false}
+                        isShowPrice={true}
+                        dataTime={props.dataTime}
+                    />
                 </div>
                 <Row gutter={[16, 16]}>
                     <Col span={12}>
