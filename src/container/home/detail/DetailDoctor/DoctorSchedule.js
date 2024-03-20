@@ -73,10 +73,12 @@ const DoctorSchedule = (props) => {
 
     useEffect(() => {
         getAllDay();
+        // eslint-disable-next-line
     }, [language]);
 
     useEffect(() => {
         fetchData();
+        // eslint-disable-next-line
     }, [props.doctorIdFromParent]);
 
     const handleOnChangeSelect = async (event) => {

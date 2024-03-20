@@ -36,7 +36,8 @@
             "manage-handbook": "Manage handbooks"
         },
         "doctor": {
-            "manage-schedule": "Manage Doctor's schedule"
+            "manage-schedule": "Manage Doctor's schedule",
+            "manage-patient": "Manage Doctor's patient"
         }
     },
     "manage-user": {
@@ -57,7 +58,8 @@
     "home-page": {
         "outstanding-doctor": "Doctor featured last week",
         "more-info": "See more",
-        "popular-specialties": "Popular specialties"
+        "popular-specialties": "Popular specialties",
+        "medical-facility": "Medical facility"
     },
     "manage-schedule": {
         "title": "Manage doctor's medical examination plans",

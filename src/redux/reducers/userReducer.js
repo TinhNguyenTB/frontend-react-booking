@@ -2,7 +2,8 @@ import actionTypes from '../actions/actionTypes';
 
 const initialState = {
     isLogin: false,
-    userInfo: null
+    userInfo: null,
+    genders: [],
 }
 
 const userReducer = (state = initialState, action) => {
@@ -24,6 +25,22 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 isLogin: false,
                 userInfo: null
+            }
+        // fetch gender
+        case actionTypes.FETCH_GENDER_START:
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_GENDER_SUCCESS:
+            state.genders = action.genders;
+            return {
+                ...state,
+
+            }
+        case actionTypes.FETCH_GENDER_FAILED:
+            state.genders = []
+            return {
+                ...state,
             }
         default:
             return state;
