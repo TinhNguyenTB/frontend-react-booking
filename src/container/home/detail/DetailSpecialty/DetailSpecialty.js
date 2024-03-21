@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { FormattedMessage } from 'react-intl';
 import Layout from '../../layout/Layout';
 import _ from 'lodash';
 import { LANGUAGES } from '../../../../utils/constant';

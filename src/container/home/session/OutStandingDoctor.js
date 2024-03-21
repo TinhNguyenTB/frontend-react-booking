@@ -26,6 +26,7 @@ const OutStandingDoctor = (props) => {
 
     useEffect(() => {
         setArrDoctors(topDoctors)
+        // eslint-disable-next-line
     }, [topDoctors])
 
     return (

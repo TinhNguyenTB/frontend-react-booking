@@ -3,6 +3,7 @@ import HomeBanner from "./banner/HomeBanner"
 import Layout from "./layout/Layout"
 import OutStandingDoctor from './session/OutStandingDoctor'
 import Specialty from "./session/Specialty"
+import MedicalFacility from './session/MedicalFacility'
 
 const HomePage = () => {
     const setting = {
@@ -17,6 +18,7 @@ const HomePage = () => {
             <HomeBanner />
             <Specialty settings={setting} />
             <OutStandingDoctor settings={setting} />
+            <MedicalFacility settings={setting} />
         </Layout>
     )
 }

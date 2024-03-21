@@ -35,14 +35,15 @@
                 background-color   : #eee;
                 border-radius      : 1rem;
 
-                // &.section-medical-facility {
-                //     background-image: url('../../assets/medical-facility/logo-hung-viet.jpg');
-                // }
-
                 &.section-outstanding-doctor {
                     width        : 10rem;
                     height       : 10rem;
                     border-radius: 50%;
+                }
+
+                &.section-medical-facility {
+                    background-size : contain;
+                    background-color: white;
                 }
 
                 // &.section-handbook {

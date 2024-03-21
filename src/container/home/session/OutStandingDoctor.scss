@@ -18,8 +18,12 @@
                 padding-top: 1rem;
                 font-size  : 1.1rem;
 
-                span:hover {
-                    color: $color-main;
+                span {
+                    transition: all 0.2s linear;
+
+                    &:hover {
+                        color: $color-main;
+                    }
                 }
             }
         }

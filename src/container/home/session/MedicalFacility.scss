@@ -1,0 +1,23 @@
+@import "../../../styles/styles.scss";
+
+.section-header {
+    margin-bottom: 0 !important;
+}
+
+.clinic-child {
+    cursor: pointer;
+
+    .clinic-name {
+        text-align: center;
+        padding   : 1rem;
+        font-size : 1.1rem;
+
+        span {
+            transition: all 0.2s linear;
+
+            &:hover {
+                color: $color-main;
+            }
+        }
+    }
+}
