@@ -5,6 +5,7 @@ import { path } from './utils/constant';
 import Login from './container/system/auth/Login'
 import DetailDoctor from './container/home/detail/DetailDoctor/DetailDoctor';
 import DetailSpecialty from './container/home/detail/DetailSpecialty/DetailSpecialty';
+import DetailClinic from './container/home/detail/DetailClinic/DetailClinic';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <Route path={path.HOME} element={<HomePage />} />
       <Route path={path.DETAIL_DOCTOR} element={<DetailDoctor />} />
       <Route path={path.DETAIL_SPECIALTY} element={<DetailSpecialty />} />
+      <Route path={path.DETAIL_CLINIC} element={<DetailClinic />} />
       <Route path={path.LOGIN} element={<Login />} />
       <Route path='*' element={<PageNotFound />} />
     </Routes>

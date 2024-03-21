@@ -3,6 +3,7 @@ import axios from '../configAxios';
 const getAllSpecialty = () => {
     return axios.get(`/api/get-all-specialty`);
 }
+
 const getTopDoctorHomeService = (limit) => {
     return axios.get(`/api/top-doctor-home?limit=${limit}`)
 }
@@ -35,9 +36,13 @@ const getAllClinic = () => {
     return axios.get(`/api/get-all-clinic`);
 }
 
+const getDetailClinicById = (data) => {
+    return axios.get(`/api/get-detail-clinic-by-id?id=${data.id}`);
+}
+
 export {
     getAllSpecialty, getDetailSpecialtyById,
     getTopDoctorHomeService, getDetailInfoDoctor, getExtraInfoDoctorById, getScheduleDoctorByDate, getProfileDoctorById,
-    getAllClinic,
+    getAllClinic, getDetailClinicById,
     getAllCodeService
 }
