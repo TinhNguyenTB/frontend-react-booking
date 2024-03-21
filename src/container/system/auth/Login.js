@@ -2,20 +2,28 @@ import { Form, Input, Button, Row, Col, Typography, message } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import { handleLogin } from '../../../services/adminService';
 import './Login.scss';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { path } from '../../../utils/constant';
+import { setUserAccount } from '../../../redux/actions/adminActions';
 
 const Login = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const onFinish = (values) => {
         handleUserLogin(values.email, values.password)
     };
 
     const handleUserLogin = async (email, password) => {
         try {
-            let data = await handleLogin(email, password);
-            if (data && data.errCode !== 0) {
-                message.error(data.message)
+            let res = await handleLogin(email, password);
+            if (res && res.errCode !== 0) {
+                message.error(res.message)
             }
-            if (data && data.errCode === 0) {
-                console.log(data);
+            if (res && res.errCode === 0) {
+                dispatch(setUserAccount(res.data.user));
+                navigate(path.SYSTEM)
             }
         } catch (error) {
             console.log(error);
