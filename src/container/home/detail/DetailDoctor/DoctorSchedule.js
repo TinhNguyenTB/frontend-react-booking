@@ -130,6 +130,7 @@ const DoctorSchedule = (props) => {
                                         let timeDisplay = language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn
                                         return (
                                             <Button
+                                                className={language === LANGUAGES.VI ? 'btn-vi' : 'btn-en'}
                                                 key={`btn-time-${index}`}
                                                 onClick={() => handleClickScheduleTime(item)}
                                             >

@@ -93,7 +93,9 @@ const ProfileDoctor = (props) => {
             </div>
             {isShowLinkDetail === true &&
                 <div className='view-detail-doctor'>
-                    <NavLink to={`/detail-doctor/${doctorId}`}><FormattedMessage id="home-page.more-info" /></NavLink>
+                    <NavLink style={{ textDecoration: 'none', marginLeft: '0.5rem' }} to={`/detail-doctor/${doctorId}`}>
+                        <FormattedMessage id="home-page.more-info" />
+                    </NavLink>
                 </div>
             }
             {isShowPrice === true &&

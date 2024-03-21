@@ -27,8 +27,12 @@ const getProfileDoctorById = (doctorId) => {
     return axios.get(`/api/get-profile-doctor-by-id?doctorId=${doctorId}`)
 }
 
+const getDetailSpecialtyById = (data) => {
+    return axios.get(`/api/get-detail-specialty-by-id?id=${data.id}&location=${data.location}`);
+}
+
 export {
-    getAllSpecialty,
+    getAllSpecialty, getDetailSpecialtyById,
     getTopDoctorHomeService, getDetailInfoDoctor, getExtraInfoDoctorById, getScheduleDoctorByDate, getProfileDoctorById,
     getAllCodeService
 }

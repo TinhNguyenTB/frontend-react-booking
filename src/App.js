@@ -4,6 +4,7 @@ import PageNotFound from './utils/PageNotFound';
 import { path } from './utils/constant';
 import Login from './container/system/auth/Login'
 import DetailDoctor from './container/home/detail/DetailDoctor/DetailDoctor';
+import DetailSpecialty from './container/home/detail/DetailSpecialty/DetailSpecialty';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     <Routes>
       <Route path={path.HOME} element={<HomePage />} />
       <Route path={path.DETAIL_DOCTOR} element={<DetailDoctor />} />
+      <Route path={path.DETAIL_SPECIALTY} element={<DetailSpecialty />} />
       <Route path={path.LOGIN} element={<Login />} />
       <Route path='*' element={<PageNotFound />} />
     </Routes>
