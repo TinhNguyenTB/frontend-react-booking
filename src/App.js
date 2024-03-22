@@ -8,17 +8,16 @@ import DetailSpecialty from './container/home/detail/DetailSpecialty/DetailSpeci
 import DetailClinic from './container/home/detail/DetailClinic/DetailClinic';
 import System from './routes/System';
 import { Scrollbars } from 'react-custom-scrollbars';
-import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
+
 function App() {
-  const isLogin = useSelector(state => state.user.isLogin);
   const [scrollHeight, setScrollHeight] = useState(0);
 
   useEffect(() => {
     let windowHeight = window.innerHeight;
     setScrollHeight(windowHeight);
-  }, [isLogin])
+  }, [])
 
   return (
     <Scrollbars autoHide style={{ height: scrollHeight }}>

@@ -2,14 +2,22 @@ import { Form, Input, Button, Row, Col, Typography, message } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import { handleLogin } from '../../../services/adminService';
 import './Login.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { path } from '../../../utils/constant';
 import { setUserAccount } from '../../../redux/actions/adminActions';
+import { useEffect } from 'react';
 
 const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const userInfo = useSelector(state => state.user.userInfo);
+
+    useEffect(() => {
+        if (userInfo) {
+            navigate(path.SYSTEM)
+        }
+    }, [userInfo])
 
     const onFinish = (values) => {
         handleUserLogin(values.email, values.password)
@@ -23,7 +31,6 @@ const Login = () => {
             }
             if (res && res.errCode === 0) {
                 dispatch(setUserAccount(res.data.user));
-                navigate(path.SYSTEM)
             }
         } catch (error) {
             console.log(error);
