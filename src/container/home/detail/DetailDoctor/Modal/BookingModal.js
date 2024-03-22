@@ -26,7 +26,6 @@ const BookingModal = (props) => {
         timeType: '',
         selectedGender: ''
     }
-
     const [infoBooking, setInfoBooking] = useState(defaultValue);
 
     const buildDataGender = (data) => {
@@ -105,43 +104,109 @@ const BookingModal = (props) => {
     }
 
     const handleConfirmBooking = async () => {
-        let timeString = buildDataBooking(props.dataTime);
-        let doctorName = buildDoctorName(props.dataTime);
-        setIsLoading(true);
+        let check = validate()
+        if (check === true) {
+            let timeString = buildDataBooking(props.dataTime);
+            let doctorName = buildDoctorName(props.dataTime);
+            setIsLoading(true);
 
-        let res = await postPatientBookAppointment({
-            fullName: infoBooking.fullName,
-            phoneNumber: infoBooking.phoneNumber,
-            email: infoBooking.email,
-            address: infoBooking.address,
-            reason: infoBooking.reason,
-            date: props.dataTime.date,
-            doctorId: infoBooking.doctorId,
-            selectedGender: infoBooking.selectedGender,
-            timeType: infoBooking.timeType,
-            language: language,
-            timeString: timeString,
-            doctorName: doctorName
-        })
-        if (res && res.errCode === 0) {
-            if (language === LANGUAGES.EN) {
-                message.success('Booking a new appointment successfully, please check email!')
+            let res = await postPatientBookAppointment({
+                fullName: infoBooking.fullName,
+                phoneNumber: infoBooking.phoneNumber,
+                email: infoBooking.email,
+                address: infoBooking.address,
+                reason: infoBooking.reason,
+                date: props.dataTime.date,
+                doctorId: infoBooking.doctorId,
+                selectedGender: infoBooking.selectedGender,
+                timeType: infoBooking.timeType,
+                language: language,
+                timeString: timeString,
+                doctorName: doctorName
+            })
+            if (res && res.errCode === 0) {
+                if (language === LANGUAGES.EN) {
+                    message.success('Booking a new appointment successfully, please check email!')
+                }
+                else {
+                    message.success('Đặt lịch khám thành công, vui lòng kiểm tra email!')
+                }
+                props.closeBookingModal()
+                setIsLoading(false)
             }
             else {
-                message.success('Đặt lịch khám thành công, vui lòng kiểm tra email!')
+                if (language === LANGUAGES.EN) {
+                    message.error('Booking a new appointment failed!')
+                }
+                else {
+                    message.error('Đặt lịch khám thất bại!')
+                }
             }
-            props.closeBookingModal()
-            setIsLoading(false)
+            setInfoBooking(defaultValue);
         }
-        else {
-            if (language === LANGUAGES.EN) {
-                message.error('Booking a new appointment failed!')
-            }
-            else {
-                message.error('Đặt lịch khám thất bại!')
-            }
+    }
+
+    const validate = () => {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const phoneRegex = /^\+?[0-9]{8,}$/;
+        if (!infoBooking.fullName) {
+            message.error(language === LANGUAGES.EN ?
+                'Please enter your fullname'
+                : 'Vui lòng nhập họ và tên của bạn'
+            )
+            return false;
         }
-        setInfoBooking(defaultValue);
+        if (!infoBooking.email) {
+            message.error(language === LANGUAGES.EN ?
+                'Please enter your email'
+                : 'Vui lòng nhập email của bạn'
+            )
+            return false;
+        }
+        if (!emailRegex.test(infoBooking.email)) {
+            message.error(language === LANGUAGES.EN ?
+                'Please enter a valid email'
+                : 'Vui lòng nhập email hợp lệ'
+            )
+            return false;
+        }
+        if (!infoBooking.phoneNumber) {
+            message.error(language === LANGUAGES.EN ?
+                'Please enter your phonenumber'
+                : 'Vui lòng nhập số diện thoại của bạn'
+            )
+            return false;
+        }
+        if (!phoneRegex.test(infoBooking.phoneNumber)) {
+            message.error(language === LANGUAGES.EN ?
+                'Please enter a valid phonenumber'
+                : 'Vui lòng nhập số điện thoại hợp lệ'
+            )
+            return false;
+        }
+        if (!infoBooking.address) {
+            message.error(language === LANGUAGES.EN ?
+                'Please enter your address'
+                : 'Vui lòng nhập địa chỉ của bạn'
+            )
+            return false;
+        }
+        if (!infoBooking.selectedGender) {
+            message.error(language === LANGUAGES.EN ?
+                'Please select your gender'
+                : 'Vui lòng chọn giới tính của bạn'
+            )
+            return false;
+        }
+        if (!infoBooking.reason) {
+            message.error(language === LANGUAGES.EN ?
+                'Please enter your medical examination reason'
+                : 'Vui lòng nhập lý do khám bệnh của bạn'
+            )
+            return false;
+        }
+
+        return true;
     }
 
     let doctorId = '';
@@ -156,7 +221,7 @@ const BookingModal = (props) => {
             open={props.isOpenModal}
             onOk={() => handleConfirmBooking()}
             onCancel={props.closeBookingModal}
-            width={1000}
+            width={'60rem'}
             okButtonProps={{ loading: isLoading }}
         >
             <div className='booking-modal-container'>
@@ -173,7 +238,6 @@ const BookingModal = (props) => {
                         <Flex vertical gap={5}>
                             <label><FormattedMessage id="patient.booking-modal.fullName" /></label>
                             <Input
-                                className='form-control'
                                 value={infoBooking.fullName}
                                 onChange={(event) => handleOnChangeInput(event.target.value, 'fullName')}
                             />
@@ -183,7 +247,6 @@ const BookingModal = (props) => {
                         <Flex vertical gap={5}>
                             <label><FormattedMessage id="patient.booking-modal.phoneNumber" /></label>
                             <Input
-                                className='form-control'
                                 value={infoBooking.phoneNumber}
                                 onChange={(event) => handleOnChangeInput(event.target.value, 'phoneNumber')}
                             />
@@ -193,7 +256,6 @@ const BookingModal = (props) => {
                         <Flex vertical gap={5}>
                             <label><FormattedMessage id="patient.booking-modal.email" /></label>
                             <Input
-                                className='form-control'
                                 value={infoBooking.email}
                                 onChange={(event) => handleOnChangeInput(event.target.value, 'email')}
                             />
@@ -203,7 +265,6 @@ const BookingModal = (props) => {
                         <Flex vertical gap={5}>
                             <label><FormattedMessage id="patient.booking-modal.address" /></label>
                             <Input
-                                className='form-control'
                                 value={infoBooking.address}
                                 onChange={(event) => handleOnChangeInput(event.target.value, 'address')}
                             />
