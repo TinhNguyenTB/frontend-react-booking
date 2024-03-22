@@ -9,6 +9,7 @@ import DetailClinic from './container/home/detail/DetailClinic/DetailClinic';
 import System from './routes/System';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { useEffect, useState } from 'react';
+import VerifyEmail from './container/pages/VerifyEmail';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path={path.DETAIL_DOCTOR} element={<DetailDoctor />} />
         <Route path={path.DETAIL_SPECIALTY} element={<DetailSpecialty />} />
         <Route path={path.DETAIL_CLINIC} element={<DetailClinic />} />
+        <Route path={path.VERIFY_EMAIL_BOOKING} element={<VerifyEmail />} />
         <Route path={path.LOGIN} element={<Login />} />
         <Route path={path.SYSTEM} element={<System />} />
         <Route path='*' element={<PageNotFound />} />

@@ -124,12 +124,22 @@ const BookingModal = (props) => {
             doctorName: doctorName
         })
         if (res && res.errCode === 0) {
-            message.success('Booking a new appointment successfully!')
+            if (language === LANGUAGES.EN) {
+                message.success('Booking a new appointment successfully, please check email!')
+            }
+            else {
+                message.success('Đặt lịch khám thành công, vui lòng kiểm tra email!')
+            }
             props.closeBookingModal()
             setIsLoading(false)
         }
         else {
-            message.error('Booking a new appointment failed!')
+            if (language === LANGUAGES.EN) {
+                message.error('Booking a new appointment failed!')
+            }
+            else {
+                message.error('Đặt lịch khám thất bại!')
+            }
         }
         setInfoBooking(defaultValue);
     }
