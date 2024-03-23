@@ -23,7 +23,10 @@ const Navigation = () => {
 
     return (
         <div>
-            <Menu mode='inline' style={{ width: '16vw', height: '100vh' }} items={menuItem} />
+            <Menu mode='inline' theme='dark'
+                style={{ width: '16vw', height: '100vh' }}
+                items={menuItem}
+            />
         </div>
     )
 }

@@ -115,6 +115,11 @@
             "note": "Ghi chú",
             "specialty": "Chuyên khoa",
             "clinic": "Phòng khám"
+        },
+        "system": {
+            "setting": "Cài đặt",
+            "logout": "Đăng xuất",
+            "change-pasword": "Đổi mật khẩu"
         }
     }
 }

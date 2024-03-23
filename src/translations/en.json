@@ -115,6 +115,11 @@
             "note": "Note",
             "specialty": "Specialties",
             "clinic": "Clinics"
+        },
+        "system": {
+            "setting": "Setting",
+            "logout": "Logout",
+            "change-pasword": "Change password"
         }
     }
 }
