@@ -55,7 +55,7 @@ const HomeHeader = (props) => {
                         <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}>
                             <span onClick={() => {
                                 changeLanguage(LANGUAGES.VI)
-                            }}>VN
+                            }}>VI
                             </span>
                         </div>
                         <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}>

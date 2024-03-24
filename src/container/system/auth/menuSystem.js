@@ -8,12 +8,7 @@ export const adminMenu = [
                 label: <FormattedMessage id='menu.admin.crud' />, key: '/system/user-manage'
             },
             {
-                label: <FormattedMessage id='menu.admin.crud-redux' />, key: '/system/user-redux'
-
-            },
-            {
                 label: <FormattedMessage id='menu.admin.manage-doctor' />, key: '/system/manage-doctor'
-
             },
             { // Quản lý kế hoạch khám bệnh của bác sĩ
                 label: <FormattedMessage id='menu.doctor.manage-schedule' />, key: '/doctor/manage-schedule'

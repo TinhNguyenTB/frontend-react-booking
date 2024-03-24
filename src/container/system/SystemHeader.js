@@ -1,13 +1,16 @@
-import { Flex, Typography, Dropdown, Space } from 'antd';
+import { Flex, Typography, Dropdown, Space, Row, Tag } from 'antd';
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { LANGUAGES } from '../../utils/constant';
 import { LogoutOutlined, SettingOutlined, UnlockOutlined } from '@ant-design/icons';
 import { FormattedMessage } from 'react-intl';
+import { changeLanguageApp } from '../../redux/actions/appActions';
+import './SystemHeader.scss'
 
 const SystemHeader = () => {
     const userInfo = useSelector(state => state.user.userInfo);
     const language = useSelector(state => state.app.language);
+    const dispatch = useDispatch()
     const items = [
         {
             label: <FormattedMessage id='admin.system.change-pasword' />,
@@ -21,9 +24,13 @@ const SystemHeader = () => {
         },
     ];
 
+    const changeLanguage = (language) => {
+        dispatch(changeLanguageApp(language))
+    }
+
     return (
         <Flex align='center' justify='space-between'
-            style={{ backgroundColor: 'rgb(8,102,255)', height: '5vh', padding: '0.5rem 2rem' }}>
+            style={{ backgroundColor: 'rgb(8,102,255)', padding: '0.5rem 2rem' }}>
             {language === LANGUAGES.VI ?
                 <Typography.Title level={4} style={{ color: 'white' }}>
                     Xin chào, {userInfo.lastName} {userInfo.firstName}
@@ -33,7 +40,21 @@ const SystemHeader = () => {
                     Hello, {userInfo.firstName} {userInfo.lastName}
                 </Typography.Title>
             }
-            <div>
+            <Flex gap={'1rem'}>
+                <Row style={{ marginTop: '0.2rem' }}>
+                    <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}>
+                        <Tag color='red' onClick={() => {
+                            changeLanguage(LANGUAGES.VI)
+                        }}>VI
+                        </Tag>
+                    </div>
+                    <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}>
+                        <Tag color='green' onClick={() => {
+                            changeLanguage(LANGUAGES.EN)
+                        }}>EN
+                        </Tag>
+                    </div>
+                </Row>
                 <Dropdown
                     menu={{
                         items,
@@ -48,7 +69,8 @@ const SystemHeader = () => {
                         </Space>
                     </Typography.Title>
                 </Dropdown>
-            </div>
+
+            </Flex>
         </Flex>
     )
 }
