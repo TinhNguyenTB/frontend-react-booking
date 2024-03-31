@@ -6,6 +6,7 @@ import { LogoutOutlined, SettingOutlined, UnlockOutlined } from '@ant-design/ico
 import { FormattedMessage } from 'react-intl';
 import { changeLanguageApp } from '../../redux/actions/appActions';
 import './SystemHeader.scss'
+import Navigation from './auth/Navigation';
 
 const SystemHeader = () => {
     const userInfo = useSelector(state => state.account.userInfo);
@@ -30,13 +31,14 @@ const SystemHeader = () => {
 
     return (
         <Flex align='center' justify='space-between'
-            style={{ backgroundColor: 'rgb(8,102,255)', padding: '0.5rem 2rem' }}>
+            style={{ padding: '0 2rem', borderBottom: '1px solid gray' }}>
+            <Navigation />
             {language === LANGUAGES.VI ?
-                <Typography.Title level={4} style={{ color: 'white' }}>
+                <Typography.Title level={4}>
                     Xin chào, {userInfo.lastName} {userInfo.firstName}
                 </Typography.Title>
                 :
-                <Typography.Title level={4} style={{ color: 'white' }}>
+                <Typography.Title level={4}>
                     Hello, {userInfo.firstName} {userInfo.lastName}
                 </Typography.Title>
             }
@@ -60,16 +62,15 @@ const SystemHeader = () => {
                         items,
                     }}
                 >
-                    <Typography.Title level={5} style={{ color: 'white' }}>
+                    <Typography.Title level={5} >
                         <Space>
                             <FormattedMessage id='admin.system.setting' />
                             <SettingOutlined
-                                style={{ color: 'white', cursor: 'pointer' }}
+                                style={{ cursor: 'pointer' }}
                             />
                         </Space>
                     </Typography.Title>
                 </Dropdown>
-
             </Flex>
         </Flex>
     )

@@ -12,10 +12,9 @@ import { useEffect, useState } from 'react';
 import VerifyEmail from './container/pages/VerifyEmail';
 import { useSelector } from 'react-redux';
 
-
 function App() {
   const [scrollHeight, setScrollHeight] = useState(0);
-  const isLogin = useSelector(state => state.account.isLogin)
+  const isLogin = useSelector(state => state.account.isLogin);
 
   useEffect(() => {
     let windowHeight = window.innerHeight;

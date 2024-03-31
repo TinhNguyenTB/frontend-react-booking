@@ -28,7 +28,6 @@ export const fetchUserAccount = () => {
         try {
             let res = await getUserAccount();
             if (res && res.errCode === 0) {
-                console.log(res.data)
                 dispatch({
                     type: actionTypes.USER_LOGIN_SUCCESS,
                     userInfo: res.data.user

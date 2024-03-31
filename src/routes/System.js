@@ -13,31 +13,30 @@ import { fetchUserAccount } from '../redux/actions/accountAction';
 const System = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const userInfo = useSelector(state => state.account.userInfo);
     const isLogin = useSelector(state => state.account.isLogin);
 
     useEffect(() => {
-        if (!userInfo)
+        if (isLogin === false)
             dispatch(fetchUserAccount())
-    }, [])
+    }, [dispatch, isLogin])
+
+
 
     useEffect(() => {
-        if (!userInfo) {
+        if (isLogin === false) {
             navigate(path.LOGIN)
         }
-    }, [userInfo])
+    }, [])
 
     return (
-        <Flex>
-            {isLogin && <Navigation />}
-            <div style={{ width: '84vw' }}>
-                <SystemHeader />
-                <Routes>
-                    <Route path='user-manage' element={<ManageUser />} />
-                    <Route path='*' element={<DashBoard />} />
-                </Routes>
-            </div>
-        </Flex>
+        <div>
+            {isLogin && <SystemHeader />}
+            <Routes>
+                <Route path='user-manage' element={<ManageUser />} />
+                <Route path='*' element={<DashBoard />} />
+            </Routes>
+
+        </div>
     )
 }
 
