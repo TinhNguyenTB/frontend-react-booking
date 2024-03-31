@@ -4,7 +4,7 @@ import { LANGUAGES } from '../../../utils/constant';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLanguageApp } from '../../../redux/actions/appActions'
 import { useNavigate } from 'react-router-dom';
-import { MenuOutlined, QuestionCircleOutlined } from '@ant-design/icons';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 import logo from '../../../assets/logo.svg'
 
 
@@ -26,7 +26,7 @@ const HomeHeader = (props) => {
             <div className='home-header-container'>
                 <div className='home-header-content'>
                     <div className='left-content'>
-                        <MenuOutlined className='header-menu' />
+                        {/* <MenuOutlined className='header-menu' /> */}
                         <img className='header-logo' alt='logo' src={logo} onClick={() => returnToHome()} />
                     </div>
                     <div className='center-content'>

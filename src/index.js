@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { store, persistor } from './redux/store';
 import IntlProviderWrapper from './hoc/IntlProviderWrapper';
 import { PersistGate } from 'redux-persist/integration/react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './styles/styles.scss';

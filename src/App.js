@@ -10,15 +10,17 @@ import System from './routes/System';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { useEffect, useState } from 'react';
 import VerifyEmail from './container/pages/VerifyEmail';
+import { useSelector } from 'react-redux';
 
 
 function App() {
   const [scrollHeight, setScrollHeight] = useState(0);
+  const isLogin = useSelector(state => state.account.isLogin)
 
   useEffect(() => {
     let windowHeight = window.innerHeight;
     setScrollHeight(windowHeight);
-  }, [])
+  }, [isLogin])
 
   return (
     <Scrollbars autoHide style={{ height: scrollHeight }}>

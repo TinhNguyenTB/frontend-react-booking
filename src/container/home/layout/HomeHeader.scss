@@ -12,27 +12,13 @@
         display: flex;
 
         .left-content {
-            width          : 20%;
-            display        : flex;
-            align-items    : center;
-            justify-content: space-between;
-
-            .header-menu {
-                font-size: 2rem;
-                cursor   : pointer;
-            }
+            width: 20%;
 
             .header-logo {
                 height   : 100%;
                 width    : 100%;
                 cursor   : pointer;
                 transform: scale(0.5, 0.5);
-            }
-
-            @media (max-width:600px) {
-                .header-logo {
-                    display: none;
-                }
             }
         }
 
@@ -57,9 +43,9 @@
 
         .right-content {
             width          : 25%;
-            justify-content: flex-end;
             align-items    : center;
             display        : flex;
+            justify-content: flex-end;
 
             .support {
                 padding-right: 1rem;
@@ -114,12 +100,6 @@
 
             .right-content {
                 width: 80%;
-            }
-        }
-
-        @media (min-width:1200px) {
-            .header-menu {
-                display: none;
             }
         }
     }

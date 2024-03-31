@@ -8,7 +8,7 @@ import { changeLanguageApp } from '../../redux/actions/appActions';
 import './SystemHeader.scss'
 
 const SystemHeader = () => {
-    const userInfo = useSelector(state => state.user.userInfo);
+    const userInfo = useSelector(state => state.account.userInfo);
     const language = useSelector(state => state.app.language);
     const dispatch = useDispatch()
     const items = [

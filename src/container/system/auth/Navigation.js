@@ -7,7 +7,7 @@ import { USER_ROLE } from '../../../utils/constant';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
-    const userInfo = useSelector(state => state.user.userInfo);
+    const userInfo = useSelector(state => state.account.userInfo);
     const [menuItem, setMenuItem] = useState([]);
     const location = useLocation();
     const navigate = useNavigate();
