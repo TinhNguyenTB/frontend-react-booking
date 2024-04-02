@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Menu } from 'antd'
 import { adminMenu, doctorMenu } from './menuSystem';
 import { useSelector } from 'react-redux';
-import { USER_ROLE } from '../../../utils/constant';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
@@ -19,10 +18,10 @@ const Navigation = () => {
 
     useEffect(() => {
         let menu = [];
-        if (userInfo.roleId === USER_ROLE.ADMIN) {
+        if (userInfo.roleId === process.env.REACT_APP_ROLE_ADMIN) {
             menu = adminMenu;
         }
-        else if (userInfo.roleId === USER_ROLE.DOCTOR) {
+        else if (userInfo.roleId === process.env.REACT_APP_ROLE_DOCTOR) {
             menu = doctorMenu;
         }
         setMenuItem(menu)

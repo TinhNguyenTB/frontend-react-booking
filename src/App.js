@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import HomePage from './container/home/HomePage';
 import PageNotFound from './container/pages/PageNotFound';
 import { path } from './utils/constant';
@@ -10,16 +10,26 @@ import System from './routes/System';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { useEffect, useState } from 'react';
 import VerifyEmail from './container/pages/VerifyEmail';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserAccount } from './redux/actions/accountAction';
 
 function App() {
   const [scrollHeight, setScrollHeight] = useState(0);
   const isLogin = useSelector(state => state.account.isLogin);
+  const dispatch = useDispatch()
+  const location = useLocation()
 
   useEffect(() => {
     let windowHeight = window.innerHeight;
     setScrollHeight(windowHeight);
   }, [isLogin])
+
+  useEffect(() => {
+    if (location.pathname.startsWith('/system') || location.pathname === '/login') {
+      dispatch(fetchUserAccount())
+    }
+  }, [])
+
 
   return (
     <Scrollbars autoHide style={{ height: scrollHeight }}>

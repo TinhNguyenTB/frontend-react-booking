@@ -2,25 +2,22 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchListUser } from '../../../redux/actions/adminActions';
 import { Button, Table } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+
 
 const TableUser = (props) => {
     const [arrUsers, setArrUsers] = useState([]);
     const dispatch = useDispatch();
     const listUser = useSelector(state => state.admin.listUser)
     const [currentPages, setCurrentPages] = useState(1);
-    const [pageSize, setPageSize] = useState(6);
+    const [currentLimit, setCurrentLimit] = useState(6);
 
     useEffect(() => {
         dispatch(fetchListUser())
     }, [])
 
     useEffect(() => {
-        // Thêm thuộc tính 'key' cho mỗi user
-        const usersWithKeys = listUser.map((user, index) => {
-            return { ...user, key: index };
-        });
-        setArrUsers(usersWithKeys)
+        setArrUsers(listUser)
     }, [listUser])
 
     const columns = [
@@ -86,13 +83,15 @@ const TableUser = (props) => {
     return (
         <div>
             <Table
+                rowKey="id"
                 dataSource={arrUsers}
-                columns={columns} pagination={{
+                columns={columns}
+                pagination={{
                     current: currentPages,
-                    pageSize: pageSize,
+                    pageSize: currentLimit,
                     onChange: (page, pageSize) => {
                         setCurrentPages(page)
-                        setPageSize(pageSize)
+                        setCurrentLimit(pageSize)
                     }
                 }}
             />

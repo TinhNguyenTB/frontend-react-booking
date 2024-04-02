@@ -11,13 +11,14 @@ import { useEffect } from 'react';
 const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const userInfo = useSelector(state => state.account.userInfo);
+    const isLogin = useSelector(state => state.account.isLogin);
 
     useEffect(() => {
-        if (userInfo) {
+        if (isLogin === true) {
             navigate(path.SYSTEM)
         }
-    }, [userInfo])
+    }, [isLogin])
+
 
     const onFinish = (values) => {
         handleUserLogin(values.email, values.password)
