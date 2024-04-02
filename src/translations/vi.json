@@ -42,6 +42,7 @@
     },
     "manage-user": {
         "add": "Thêm mới người dùng",
+        "update": "Cập nhật thông tin người dùng",
         "email": "Email",
         "password": "Mật khẩu",
         "first-name": "Tên",

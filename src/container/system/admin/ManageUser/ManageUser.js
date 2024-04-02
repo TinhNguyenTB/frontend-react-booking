@@ -1,12 +1,12 @@
 import React from 'react'
 import './ManageUser.scss';
 import { FormattedMessage } from 'react-intl';
-import { LANGUAGES, CRUD_ACTIONS } from '../../../utils/constant.js';
-import { CommonUtils } from '../../../utils/CommonUtils.js';
+import { LANGUAGES } from '../../../../utils/constant.js'
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css'
 import TableUser from './TableUser.js';
 import { Button } from 'antd';
+import ModalManageUser from './ModalManageUser.js';
 
 const ManageUser = () => {
     return (
@@ -16,7 +16,7 @@ const ManageUser = () => {
                 Add a new user
             </Button>
             <TableUser />
-
+            <ModalManageUser />
         </div>
     )
 }
