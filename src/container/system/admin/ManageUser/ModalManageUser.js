@@ -7,8 +7,9 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { CRUD_ACTIONS, LANGUAGES } from '../../../../utils/constant';
 import CommonUtils from '../../../../utils/CommonUtils';
-import { Modal, Row, Col, Flex, Input, Select } from 'antd';
+import { Modal, Row, Col, Flex, Input, Select, Image } from 'antd';
 import "./ManageUser.scss"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ModalManageUser = (props) => {
     const dispatch = useDispatch();
@@ -182,6 +183,7 @@ const ModalManageUser = (props) => {
                 title={<FormattedMessage id={action === CRUD_ACTIONS.CREATE ? 'manage-user.add' : 'manage-user.update'} />}
                 open={true}
                 width={'60rem'}
+                centered
             // onOk={() => handleConfirmBooking()}
             // onCancel={props.closeBookingModal}
             // okButtonProps={{disabled}}
@@ -278,12 +280,27 @@ const ModalManageUser = (props) => {
                                 <input id='previewImg' type='file' hidden
                                     onChange={(event) => handleOnChangeImage(event)}
                                 />
-                                <label className='label-upload' htmlFor='previewImg'>Tải ảnh <i className='fas fa-upload'></i></label>
+                                <label className='label-upload' htmlFor='previewImg'>
+                                    Tải ảnh <FontAwesomeIcon icon="fa-solid fa-upload" />
+                                </label>
                                 <div className='preview-image'
                                     style={{ backgroundImage: `url(${previewImageUrl})` }}
                                     onClick={() => openPreviewImage()}
                                 >
                                 </div>
+                                {isOpenPreviewImg && (
+                                    <Image
+                                        wrapperStyle={{
+                                            display: 'none'
+                                        }}
+                                        preview={{
+                                            visible: isOpenPreviewImg,
+                                            onVisibleChange: (visible) => setIsOpenPreviewImg(visible),
+                                            afterOpenChange: (visible) => !visible && setPreviewImageUrl(''),
+                                        }}
+                                        src={previewImageUrl}
+                                    />
+                                )}
                             </div>
                         </Flex>
                     </Col>
