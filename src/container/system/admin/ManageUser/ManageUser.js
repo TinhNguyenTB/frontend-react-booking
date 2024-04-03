@@ -1,22 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './ManageUser.scss';
-import { FormattedMessage } from 'react-intl';
-import { LANGUAGES } from '../../../../utils/constant.js'
-import Lightbox from 'react-image-lightbox'
-import 'react-image-lightbox/style.css'
 import TableUser from './TableUser.js';
 import { Button } from 'antd';
 import ModalManageUser from './ModalManageUser.js';
 
 const ManageUser = () => {
+    const [isOpenModal, setIsOpenModal] = useState(false);
+
+    const closeModal = () => {
+        setIsOpenModal(false);
+    }
+
     return (
         <div className='manage-user-container'>
-            <Button type='primary'
-                style={{ marginBottom: '1rem' }}>
+            <Button
+                type='primary'
+                style={{ marginBottom: '1rem' }}
+                onClick={() => setIsOpenModal(true)}
+            >
                 Add a new user
             </Button>
             <TableUser />
-            <ModalManageUser />
+            <ModalManageUser
+                isOpenModal={isOpenModal}
+                closeModal={closeModal}
+            />
         </div>
     )
 }

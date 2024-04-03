@@ -7,9 +7,10 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { CRUD_ACTIONS, LANGUAGES } from '../../../../utils/constant';
 import CommonUtils from '../../../../utils/CommonUtils';
-import { Modal, Row, Col, Flex, Input, Select, Image } from 'antd';
+import { Modal, Row, Col, Flex, Input, Select, Image, message } from 'antd';
 import "./ManageUser.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const ModalManageUser = (props) => {
     const dispatch = useDispatch();
@@ -107,15 +108,22 @@ const ModalManageUser = (props) => {
 
     const checkValidateInput = () => {
         let isValid = true
-        let arrCheck = ["email", "password", "firstName", "lastName", "phoneNumber", "address"]
+        let arrCheck = ["email", "password", "firstName", "lastName", "phoneNumber", "address", "gender", "position", "role"]
         for (let i = 0; i < arrCheck.length; i++) {
             if (!userInfo[arrCheck[i]]) {
                 isValid = false;
-                alert('Missing required params: ' + arrCheck[i])
+                message.warning('Missing required params: ' + arrCheck[i])
                 break;
             }
         }
         return isValid
+    }
+
+    const resetValue = () => {
+        setUserInfo(defaultValue);
+        setAction(CRUD_ACTIONS.CREATE)
+        setPreviewImageUrl("")
+        props.closeModal()
     }
 
     const handleSaveUser = () => {
@@ -152,6 +160,7 @@ const ModalManageUser = (props) => {
                 avatar: userInfo.avatar
             }))
         }
+        resetValue()
     }
 
     const handleSelectGender = (selectedOption) => {
@@ -181,11 +190,11 @@ const ModalManageUser = (props) => {
         <div>
             <Modal
                 title={<FormattedMessage id={action === CRUD_ACTIONS.CREATE ? 'manage-user.add' : 'manage-user.update'} />}
-                open={true}
+                open={props.isOpenModal}
                 width={'60rem'}
                 centered
-            // onOk={() => handleConfirmBooking()}
-            // onCancel={props.closeBookingModal}
+                onOk={() => handleSaveUser()}
+                onCancel={props.closeModal}
             // okButtonProps={{disabled}}
             >
                 <Row gutter={[16, 16]}>
@@ -213,6 +222,7 @@ const ModalManageUser = (props) => {
                             <Input
                                 value={userInfo.email}
                                 onChange={(event) => onChangeInput(event, 'email')}
+                                disabled={action === CRUD_ACTIONS.EDIT ? true : false}
                             />
                         </Flex>
                     </Col>
@@ -222,6 +232,7 @@ const ModalManageUser = (props) => {
                             <Input.Password
                                 value={userInfo.password}
                                 onChange={(event) => onChangeInput(event, 'password')}
+                                disabled={action === CRUD_ACTIONS.EDIT ? true : false}
                             />
                         </Flex>
                     </Col>

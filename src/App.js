@@ -13,6 +13,7 @@ import VerifyEmail from './container/pages/VerifyEmail';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserAccount } from './redux/actions/accountAction';
 
+
 function App() {
   const [scrollHeight, setScrollHeight] = useState(0);
   const isLogin = useSelector(state => state.account.isLogin);

@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchListUser } from '../../../../redux/actions/adminActions';
 import { Button, Table } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { deleteUser } from '../../../../redux/actions/adminActions';
 
-const TableUser = (props) => {
+
+const TableUser = () => {
     const [arrUsers, setArrUsers] = useState([]);
     const dispatch = useDispatch();
     const listUser = useSelector(state => state.admin.listUser)
@@ -77,7 +78,7 @@ const TableUser = (props) => {
     }
 
     const handleEditUser = (user) => {
-        props.handleEditUserFromParent(user)
+
     }
 
     return (
