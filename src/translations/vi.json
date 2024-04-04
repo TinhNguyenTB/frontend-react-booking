@@ -53,8 +53,9 @@
         "position": "Chức danh",
         "role": "Vai trò",
         "image": "Ảnh dại diện",
-        "save": "Lưu",
-        "edit": "Lưu thay đổi"
+        "upload": "Tải ảnh",
+        "delete": "Xóa",
+        "edit": "Sửa"
     },
     "home-page": {
         "outstanding-doctor": "Bác sĩ nổi bật tuần qua",

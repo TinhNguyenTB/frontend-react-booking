@@ -31,7 +31,7 @@ const SystemHeader = () => {
 
     return (
         <Flex align='center' justify='space-between'
-            style={{ padding: '0 2rem', borderBottom: '1px solid gray' }}>
+            style={{ padding: '0 2rem', borderBottom: '1px solid rgb(240,240,240)' }}>
             <Navigation />
             {language === LANGUAGES.VI ?
                 <Typography.Title level={4}>
@@ -61,6 +61,7 @@ const SystemHeader = () => {
                     menu={{
                         items,
                     }}
+                    trigger={['click']}
                 >
                     <Typography.Title level={5} >
                         <Space>

@@ -31,7 +31,7 @@ const Navigation = () => {
     return (
         <div>
             <Menu mode='horizontal'
-                style={{ width: '60rem' }}
+                style={{ width: '60rem', border: 'none' }}
                 items={menuItem}
                 onClick={handleMenuClick}
                 selectedKeys={[current]}

@@ -10,6 +10,7 @@ import CommonUtils from '../../../../utils/CommonUtils';
 import { Modal, Row, Col, Flex, Input, Select, Image, message } from 'antd';
 import "./ManageUser.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { emitter } from '../../../../utils/emitter';
 
 
 const ModalManageUser = (props) => {
@@ -57,31 +58,11 @@ const ModalManageUser = (props) => {
         setUserInfo({ ...userInfo, role: roles.length > 0 ? roles[0].keyMap : '' })
     }, [listUser])
 
-    const handleOnChangeImage = async (event) => {
-        let data = event.target.files;
-        let file = data[0];
-        if (file) {
-            let base64 = await CommonUtils.getBase64(file)
-            let objectUrl = URL.createObjectURL(file);
-            setPreviewImageUrl(objectUrl)
-            setUserInfo({ ...userInfo, avatar: base64 })
-        }
-    }
-
-    const openPreviewImage = () => {
-        if (!previewImageUrl) {
-            return
-        }
-        else {
-            setIsOpenPreviewImg(true)
-        }
-    }
-
-    const onChangeInput = (event, id) => {
-        let copyState = { ...userInfo }
-        copyState[id] = event.target.value
-        setUserInfo({ ...copyState })
-    }
+    useEffect(() => {
+        emitter.on("EditUser", (user) => {
+            handleEditUser(user)
+        })
+    }, [])
 
     const handleEditUser = (user) => {
         let imageBase64 = '';
@@ -104,6 +85,7 @@ const ModalManageUser = (props) => {
         setPreviewImageUrl(imageBase64);
         setAction(CRUD_ACTIONS.EDIT);
         setUserEditId(user.id)
+        props.setIsOpenModal(true);
     }
 
     const checkValidateInput = () => {
@@ -144,6 +126,7 @@ const ModalManageUser = (props) => {
                 positionId: userInfo.position,
                 avatar: userInfo.avatar
             }))
+            resetValue()
         }
         if (action === CRUD_ACTIONS.EDIT) {
             dispatch(editUser({  // call action from redux
@@ -159,8 +142,8 @@ const ModalManageUser = (props) => {
                 positionId: userInfo.position,
                 avatar: userInfo.avatar
             }))
+            resetValue()
         }
-        resetValue()
     }
 
     const handleSelectGender = (selectedOption) => {
@@ -184,6 +167,32 @@ const ModalManageUser = (props) => {
             })
         }
         return result;
+    }
+
+    const openPreviewImage = () => {
+        if (!previewImageUrl) {
+            return
+        }
+        else {
+            setIsOpenPreviewImg(true)
+        }
+    }
+
+    const onChangeInput = (event, id) => {
+        let copyState = { ...userInfo }
+        copyState[id] = event.target.value
+        setUserInfo({ ...copyState })
+    }
+
+    const handleOnChangeImage = async (event) => {
+        let data = event.target.files;
+        let file = data[0];
+        if (file) {
+            let base64 = await CommonUtils.getBase64(file)
+            let objectUrl = URL.createObjectURL(file);
+            setPreviewImageUrl(objectUrl)
+            setUserInfo({ ...userInfo, avatar: base64 })
+        }
     }
 
     return (
@@ -292,7 +301,7 @@ const ModalManageUser = (props) => {
                                     onChange={(event) => handleOnChangeImage(event)}
                                 />
                                 <label className='label-upload' htmlFor='previewImg'>
-                                    Tải ảnh <FontAwesomeIcon icon="fa-solid fa-upload" />
+                                    <FormattedMessage id="manage-user.upload" /> <FontAwesomeIcon icon="fa-solid fa-upload" />
                                 </label>
                                 <div className='preview-image'
                                     style={{ backgroundImage: `url(${previewImageUrl})` }}

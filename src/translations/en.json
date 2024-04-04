@@ -45,16 +45,17 @@
         "update": "Update user information",
         "email": "Email",
         "password": "Password",
-        "first-name": "First name",
-        "last-name": "Last name",
-        "phone-number": "Phone number",
+        "first-name": "Firstname",
+        "last-name": "Lastname",
+        "phone-number": "Phonenumber",
         "address": "Address",
         "gender": "Gender",
         "position": "Position",
         "role": "Role",
         "image": "Avatar",
-        "save": "Save",
-        "edit": "Save changes"
+        "upload": "Upload",
+        "delete": "Delete",
+        "edit": "Edit"
     },
     "home-page": {
         "outstanding-doctor": "Doctor featured last week",
