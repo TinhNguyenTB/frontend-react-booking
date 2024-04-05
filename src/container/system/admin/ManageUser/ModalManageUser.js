@@ -5,7 +5,7 @@ import {
     createNewUser, editUser
 } from '../../../../redux/actions/adminActions';
 import { useDispatch, useSelector } from 'react-redux';
-import { CRUD_ACTIONS, LANGUAGES } from '../../../../utils/constant';
+import { CRUD_ACTIONS, LANGUAGES, REGEX } from '../../../../utils/constant';
 import CommonUtils from '../../../../utils/CommonUtils';
 import { Modal, Row, Col, Flex, Input, Select, Image, message } from 'antd';
 import "./ManageUser.scss"
@@ -89,16 +89,86 @@ const ModalManageUser = (props) => {
     }
 
     const checkValidateInput = () => {
-        let isValid = true
-        let arrCheck = ["email", "password", "firstName", "lastName", "phoneNumber", "address", "gender", "position", "role"]
-        for (let i = 0; i < arrCheck.length; i++) {
-            if (!userInfo[arrCheck[i]]) {
-                isValid = false;
-                message.warning('Missing required params: ' + arrCheck[i])
-                break;
-            }
+        const emailRegex = REGEX.EMAIL
+        const phoneRegex = REGEX.PHONE
+        if (!userInfo.firstName) {
+            message.error(language === LANGUAGES.EN ?
+                `Please enter user's firstName`
+                : 'Vui lòng nhập tên của người dùng'
+            )
+            return false;
         }
-        return isValid
+        if (!userInfo.lastName) {
+            message.error(language === LANGUAGES.EN ?
+                `Please enter user's lastName`
+                : 'Vui lòng nhập họ của người dùng'
+            )
+            return false;
+        }
+        if (!userInfo.email) {
+            message.error(language === LANGUAGES.EN ?
+                `Please enter user's email`
+                : 'Vui lòng nhập email của người dùng'
+            )
+            return false;
+        }
+        if (!emailRegex.test(userInfo.email)) {
+            message.error(language === LANGUAGES.EN ?
+                `Please enter a valid email`
+                : 'Vui lòng nhập email hợp lệ'
+            )
+            return false;
+        }
+        if (!userInfo.password) {
+            message.error(language === LANGUAGES.EN ?
+                `Please enter user's password`
+                : 'Vui lòng nhập mật khẩu của người dùng'
+            )
+            return false;
+        }
+        if (!userInfo.phoneNumber) {
+            message.error(language === LANGUAGES.EN ?
+                `Please enter user's phonenumber`
+                : 'Vui lòng nhập số diện thoại của người dùng'
+            )
+            return false;
+        }
+        if (!phoneRegex.test(userInfo.phoneNumber)) {
+            message.error(language === LANGUAGES.EN ?
+                'Please enter a valid phonenumber'
+                : 'Vui lòng nhập số điện thoại hợp lệ'
+            )
+            return false;
+        }
+        if (!userInfo.address) {
+            message.error(language === LANGUAGES.EN ?
+                `Please enter user's address`
+                : 'Vui lòng nhập địa chỉ của người dùng'
+            )
+            return false;
+        }
+        if (!userInfo.gender) {
+            message.error(language === LANGUAGES.EN ?
+                `Please select user's gender`
+                : 'Vui lòng chọn giới tính của người dùng'
+            )
+            return false;
+        }
+        if (!userInfo.position) {
+            message.error(language === LANGUAGES.EN ?
+                `Please select user's position`
+                : 'Vui lòng chọn chức danh của người dùng'
+            )
+            return false;
+        }
+        if (!userInfo.role) {
+            message.error(language === LANGUAGES.EN ?
+                `Please select user's role`
+                : 'Vui lòng chọn vai trò của người dùng'
+            )
+            return false;
+        }
+        return true;
     }
 
     const resetValue = () => {
@@ -204,7 +274,6 @@ const ModalManageUser = (props) => {
                 centered
                 onOk={() => handleSaveUser()}
                 onCancel={props.closeModal}
-            // okButtonProps={{disabled}}
             >
                 <Row gutter={[16, 16]}>
                     <Col span={12}>

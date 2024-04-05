@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { LANGUAGES } from '../../../../../utils/constant';
+import { LANGUAGES, REGEX } from '../../../../../utils/constant';
 import { FormattedMessage } from 'react-intl';
 import { Modal, message, Select, Row, Col, Input, Flex } from 'antd';
 import moment from 'moment';
@@ -147,8 +147,8 @@ const BookingModal = (props) => {
     }
 
     const validate = () => {
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        const phoneRegex = /^\+?[0-9]{8,}$/;
+        const emailRegex = REGEX.EMAIL
+        const phoneRegex = REGEX.PHONE
         if (!infoBooking.fullName) {
             message.error(language === LANGUAGES.EN ?
                 'Please enter your fullname'

@@ -15,6 +15,11 @@ export const LANGUAGES = {
     EN: 'en'
 };
 
+export const REGEX = {
+    EMAIL: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    PHONE: /^\+?[0-9]{8,}$/
+};
+
 export const CRUD_ACTIONS = {
     CREATE: "CREATE",
     EDIT: "EDIT",
