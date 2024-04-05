@@ -24,10 +24,9 @@
     "menu": {
         "admin": {
             "manage-user": "Users system",
-            "manage-doctor": "Manage doctors",
+            "manage-doctor": "Doctor's information",
             "manage-admin": "Manage admins",
-            "crud": "CRUD user",
-            "crud-redux": "CRUD redux",
+            "account": "Accounts",
             "clinic": "Clinics",
             "manage-clinic": "Manage clinics",
             "specialty": "Specialties",

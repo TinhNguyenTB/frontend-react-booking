@@ -58,7 +58,7 @@ const adminReducer = (state = initialState, action) => {
             }
         // fetch all doctor
         case actionTypes.FETCH_ALL_DOCTORS_SUCCESS:
-            state.allDoctors = action.dataDr
+            state.allDoctors = action.data
             return {
                 ...state,
             }

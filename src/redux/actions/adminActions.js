@@ -1,9 +1,11 @@
 import actionTypes from "./actionTypes";
 import {
     getAllCodeService,
-    getListUser, deleteUserService, createNewUserService, editUserService
+    getListUser, deleteUserService, createNewUserService, editUserService,
+    getAllDoctors
 
 } from "../../services/adminService";
+import { getAllSpecialty, getAllClinic } from '../../services/appService'
 import { message } from "antd";
 
 
@@ -173,3 +175,89 @@ export const deleteUser = (userId) => {
         }
     }
 }
+
+export const fetchAllDoctor = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllDoctors()
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+                    data: res.data
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_DOCTORS_FAILED
+                });
+            }
+        } catch (error) {
+            dispatch({
+                type: actionTypes.FETCH_ALL_DOCTORS_FAILED
+            });
+            console.log('fetchAllDoctor error:', error)
+        }
+    }
+}
+
+export const getRequiredDoctorInfo = () => {
+    return async (dispatch, getState) => {
+        try {
+            let resPrice = await getAllCodeService("PRICE");
+            let resPayment = await getAllCodeService("PAYMENT");
+            let resProvince = await getAllCodeService("PROVINCE");
+            let resSpecialty = await getAllSpecialty();
+            let resClinic = await getAllClinic();
+
+            if (resPrice && resPrice.errCode === 0
+                && resPayment && resPayment.errCode === 0
+                && resProvince && resProvince.errCode === 0
+                && resSpecialty && resSpecialty.errCode === 0
+                && resClinic && resClinic.errCode === 0
+            ) {
+                let data = {
+                    resPrice: resPrice.data,
+                    resPayment: resPayment.data,
+                    resProvince: resProvince.data,
+                    resSpecialty: resSpecialty.data,
+                    resClinic: resClinic.data
+                }
+                dispatch({
+                    type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_SUCCESS,
+                    data: data
+                })
+            }
+            else {
+                dispatch({
+                    type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAILED
+                });
+            }
+        } catch (error) {
+            dispatch({
+                type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAILED
+            });
+            console.log('fetchRequiredDoctorInfo error:', error)
+        }
+    }
+}
+
+// export const saveDetailDoctor = (data) => {
+//     return async (dispatch, getState) => {
+//         try {
+//             let res = await saveDetailDoctorService(data)
+//             if (res && res.errCode === 0) {
+//                 dispatch({
+//                     type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
+//                 })
+//                 message.success('Save infor detail doctor successful!')
+//             } else {
+//                 dispatch({
+//                     type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED
+//                 });
+//                 message.error('Save infor detail doctor failed!')
+//             }
+//         } catch (error) {
+//             dispatch(saveDetailDoctorFaied());
+//             console.log('saveDetailDoctor error:', error)
+//         }
+//     }
+// }

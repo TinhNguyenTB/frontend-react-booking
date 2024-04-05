@@ -24,10 +24,9 @@
     "menu": {
         "admin": {
             "manage-user": "Quản lý người dùng",
-            "manage-doctor": "Quản lý bác sĩ",
+            "manage-doctor": "Thông tin bác sĩ",
             "manage-admin": "Quản lý admin",
-            "crud": "CRUD user",
-            "crud-redux": "CRUD redux",
+            "account": "Tài khoản",
             "clinic": "Phòng khám",
             "manage-clinic": "Quản lý phòng khám",
             "specialty": "Chuyên khoa",
