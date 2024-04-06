@@ -1,5 +1,7 @@
 import actionTypes from "./actionTypes";
-import { getUserAccount } from "../../services/accountService";
+import { getUserAccount, handleLogout } from "../../services/accountService";
+import { path } from "../../utils/constant";
+
 
 export const doLogin = (data) => {
     return (dispatch, getState) => {
@@ -46,6 +48,18 @@ export const fetchUserAccount = () => {
     }
 }
 
-export const processLogout = () => ({
-    type: actionTypes.PROCESS_LOGOUT
-})
+export const doLogout = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await handleLogout();
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.PROCESS_LOGOUT
+                })
+                window.location.href = path.LOGIN
+            }
+        } catch (error) {
+            console.log('logout error:', error)
+        }
+    }
+}

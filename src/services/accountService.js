@@ -8,6 +8,10 @@ const getUserAccount = () => {
     return axios.get("/api/account")
 }
 
+const handleLogout = () => {
+    return axios.post("/api/logout")
+}
+
 export {
-    handleLogin, getUserAccount
+    handleLogin, getUserAccount, handleLogout
 }

@@ -1,4 +1,4 @@
-import { Flex, Typography, Dropdown, Space, Row, Tag } from 'antd';
+import { Flex, Typography, Dropdown, Space, Row, Tag, Button } from 'antd';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { LANGUAGES } from '../../utils/constant';
@@ -7,21 +7,31 @@ import { FormattedMessage } from 'react-intl';
 import { changeLanguageApp } from '../../redux/actions/appActions';
 import './SystemHeader.scss'
 import Navigation from './auth/Navigation';
+import { doLogout } from '../../redux/actions/accountAction';
 
 const SystemHeader = () => {
     const userInfo = useSelector(state => state.account.userInfo);
     const language = useSelector(state => state.app.language);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(doLogout())
+    }
+
     const items = [
         {
-            label: <FormattedMessage id='admin.system.change-pasword' />,
+            label: <Button style={{ padding: 0 }} type='link'>
+                <FormattedMessage id='admin.system.change-pasword' />
+            </Button>,
             icon: <UnlockOutlined />,
-            key: '0',
+            key: 'change-password',
         },
         {
-            label: <FormattedMessage id='admin.system.logout' />,
+            label: <Button onClick={() => handleLogout()} style={{ padding: 0 }} type='text' >
+                <FormattedMessage id='admin.system.logout' />
+            </Button>,
             icon: <LogoutOutlined />,
-            key: '0',
+            key: 'logout',
         },
     ];
 

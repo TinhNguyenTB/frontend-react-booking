@@ -13,7 +13,7 @@ const accountReducer = (state = initialState, action) => {
                 isLogin: true,
                 userInfo: action.userInfo
             }
-        case actionTypes.USER_LOGIN_FAIL:
+        case actionTypes.USER_LOGIN_FAILED:
             return {
                 ...state,
                 isLogin: false,
