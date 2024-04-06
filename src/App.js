@@ -8,22 +8,15 @@ import DetailSpecialty from './container/home/detail/DetailSpecialty/DetailSpeci
 import DetailClinic from './container/home/detail/DetailClinic/DetailClinic';
 import System from './routes/System';
 import { Scrollbars } from 'react-custom-scrollbars';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import VerifyEmail from './container/pages/VerifyEmail';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchUserAccount } from './redux/actions/accountAction';
 
 
 function App() {
-  const [scrollHeight, setScrollHeight] = useState(0);
-  const isLogin = useSelector(state => state.account.isLogin);
   const dispatch = useDispatch()
   const location = useLocation()
-
-  useEffect(() => {
-    let windowHeight = window.innerHeight;
-    setScrollHeight(windowHeight);
-  }, [isLogin])
 
   useEffect(() => {
     if (location.pathname.startsWith('/system') || location.pathname === '/login') {
@@ -33,7 +26,7 @@ function App() {
 
 
   return (
-    <Scrollbars autoHide style={{ height: scrollHeight }}>
+    <Scrollbars autoHide style={{ height: '100vh' }}>
       <Routes>
         <Route path={path.HOME} element={<HomePage />} />
         <Route path={path.DETAIL_DOCTOR} element={<DetailDoctor />} />

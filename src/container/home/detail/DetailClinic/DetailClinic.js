@@ -40,9 +40,9 @@ const DetailClinic = () => {
 
     return (
         <Layout>
-            <div className='detail-specialty-container'>
-                <div className='detail-specialty-body'>
-                    <div className='description-specialty'>
+            <div className='detail-clinic-container'>
+                <div className='detail-clinic-body'>
+                    <div className='description-clinic'>
                         {dataDetailClinic && !_.isEmpty(dataDetailClinic)
                             &&
                             <>

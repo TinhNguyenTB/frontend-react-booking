@@ -1,15 +1,16 @@
 @import '../../../../styles/styles.scss';
 
-.detail-specialty-container {
-    .detail-specialty-body {
-        padding         : 0 100px;
+.detail-clinic-container {
+    .detail-clinic-body {
+        padding         : 0 6rem;
         background-color: rgb(238, 238, 238);
         display         : flex;
         flex-direction  : column;
 
-        .description-specialty {
-            padding         : 20px;
-            margin          : 15px 0;
+        .description-clinic {
+            padding         : 1rem;
+            margin          : 1rem 0;
+            border-radius   : 0.5rem;
             background-color: white !important;
 
             .clinic-name {
@@ -20,36 +21,24 @@
             }
         }
 
-        .search-doctor {
-            select {
-                height       : 30px;
-                padding      : 5px;
-                border       : none;
-                outline      : none;
-                border-radius: 3px;
-                cursor       : pointer;
-            }
-        }
-
         .each-doctor {
-            width           : 100%;
             display         : flex;
-            min-height      : 300px;
+            min-height      : 20rem;
             background-color: #fff;
             box-shadow      : 0 1px 6px #20212447;
-            border-radius   : 8px;
-            margin          : 15px 0;
-            padding         : 10px;
+            border-radius   : 0.5rem;
+            margin          : 1rem 0;
+            padding         : 1rem;
 
             .detail-content-left {
                 width        : 50%;
                 border-right : 1px solid #ddd;
-                padding-right: 15px;
+                padding-right: 1rem;
             }
 
             .detail-content-right {
                 width  : 50%;
-                padding: 10px;
+                padding: 1rem;
 
                 .doctor-schedule {
                     .doctor-schedule-container {
@@ -58,8 +47,8 @@
                 }
 
                 .doctor-extra-info {
-                    padding-top: 10px;
-                    margin-top : 10px;
+                    padding-top: 1rem;
+                    margin-top : 0.5rem;
                     border-top : 1px solid #ddd;
 
                     .doctor-extra-infor-container {

@@ -27,7 +27,7 @@ const SystemHeader = () => {
             key: 'change-password',
         },
         {
-            label: <Button onClick={() => handleLogout()} style={{ padding: 0 }} type='text' >
+            label: <Button onClick={() => handleLogout()} style={{ padding: 0 }} type='link' >
                 <FormattedMessage id='admin.system.logout' />
             </Button>,
             icon: <LogoutOutlined />,
