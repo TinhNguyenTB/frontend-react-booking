@@ -103,11 +103,12 @@
     },
     "admin": {
         "manage-doctor": {
-            "title": "Create additional doctor information",
+            "title": "Doctor's information",
             "select-doctor": "Select Doctor",
             "intro": "Introductory information",
             "add": "Create info",
             "save": "Save changes",
+            "describe": "Describe",
             "price": "Medical examination price",
             "payment": "Payment methods",
             "province": "Province",

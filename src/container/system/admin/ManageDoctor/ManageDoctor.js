@@ -7,7 +7,7 @@ import MarkdownIt from 'markdown-it';
 import { LANGUAGES, CRUD_ACTIONS } from '../../../../utils/constant';
 import { getDetailInfoDoctor, saveDetailDoctorService } from '../../../../services/adminService';
 import { getRequiredDoctorInfo, fetchAllDoctor } from '../../../../redux/actions/adminActions';
-import { Row, Col, Flex, Input, Select, Button } from 'antd';
+import { Row, Col, Flex, Input, Select, Button, Typography, message } from 'antd';
 import NumberFormat from 'react-number-format';
 
 const ManageDoctor = () => {
@@ -135,7 +135,7 @@ const ManageDoctor = () => {
     }
 
     const handleSaveContentMarkdown = async () => {
-        await saveDetailDoctorService({
+        let res = await saveDetailDoctorService({
             contentHTML: markdown.contentHTML,
             contentMarkdown: markdown.contentMarkdown,
             description: markdown.description,
@@ -148,20 +148,31 @@ const ManageDoctor = () => {
             clinicId: infoDoctor.selectedClinic && infoDoctor.selectedClinic ? infoDoctor.selectedClinic : '',
             specialtyId: infoDoctor.selectedSpecialty
         })
+        if (res.errCode === 0) {
+            setMarkdown(defaultMarkdown)
+            setHasOldData(false);
+            setInfoDoctor(defaultInfoDoctor);
+            setSelectedDoctor("")
+            message.success("Save detail info doctor successfully!")
+        }
+        else {
+            message.error("Save detail info doctor failed")
+        }
     }
 
     const handleChangeSelect = async (selectedOption) => {
         setSelectedDoctor(selectedOption);
         let res = await getDetailInfoDoctor(selectedOption)
         if (res && res.errCode === 0 && res.data && res.data.Markdown) {
-            let markdown = res.data.Markdown;
+            let markdownData = res.data.Markdown;
             let note = '',
                 paymentId = '', priceId = '', provinceId = '',
-                selectedPayment = '', selectedPrice = '', selectedProvince = '',
-                selectedSpecialty = '', specialtyId = '',
-                selectedClinic = '', clinicId = ''
+                Payment = '', Price = '', Province = '',
+                Specialty = '', specialtyId = '',
+                Clinic = '', clinicId = ''
 
             if (res.data.Doctor_Infor) {
+
                 note = res.data.Doctor_Infor.note
                 paymentId = res.data.Doctor_Infor.paymentId
                 priceId = res.data.Doctor_Infor.priceId
@@ -169,22 +180,29 @@ const ManageDoctor = () => {
                 specialtyId = res.data.Doctor_Infor.specialtyId
                 clinicId = res.data.Doctor_Infor.clinicId
 
-                selectedPayment = listPayment.find(item => item.value === paymentId);
-                selectedPrice = listPrice.find(item => item.value === priceId);
-                selectedProvince = listProvince.find(item => item.value === provinceId);
-                selectedSpecialty = listSpecialty.find(item => item.value === specialtyId);
-                selectedClinic = listClinic.find(item => item.value === clinicId)
+
+                Payment = listPayment.find(item => item.value === paymentId);
+                Price = listPrice.find(item => item.value === priceId);
+                Province = listProvince.find(item => item.value === provinceId);
+                Specialty = listSpecialty.find(item => item.value === specialtyId);
+                Clinic = listClinic.find(item => item.value === clinicId)
+
             }
-            setMarkdown({ ...markdown, contentHTML: markdown.contentHTML })
-            setMarkdown({ ...markdown, contentMarkdown: markdown.contentMarkdown })
-            setMarkdown({ ...markdown, description: markdown.description })
+            setMarkdown({
+                ...markdown,
+                contentHTML: markdownData.contentHTML,
+                contentMarkdown: markdownData.contentMarkdown,
+                description: markdownData.description
+            })
             setHasOldData(true)
-            setInfoDoctor({ ...infoDoctor, note: note })
-            setInfoDoctor({ ...infoDoctor, selectedPayment: selectedPayment })
-            setInfoDoctor({ ...infoDoctor, selectedPrice: selectedPrice })
-            setInfoDoctor({ ...infoDoctor, selectedProvince: selectedProvince })
-            setInfoDoctor({ ...infoDoctor, selectedSpecialty: selectedSpecialty })
-            setInfoDoctor({ ...infoDoctor, selectedClinic: selectedClinic })
+            setInfoDoctor({
+                ...infoDoctor, note: note,
+                selectedPayment: Payment.value,
+                selectedPrice: Price.value,
+                selectedProvince: Province.value,
+                selectedSpecialty: Specialty.value,
+                selectedClinic: Clinic.value
+            })
         } else {
             setMarkdown(defaultMarkdown)
             setHasOldData(false);
@@ -192,133 +210,134 @@ const ManageDoctor = () => {
         }
     }
 
-    const handleChangeSelectDoctorInfo = (selectedOption, name) => {
-        let stateName = name.name;
-        let stateCopy = { ...infoDoctor };
-        stateCopy[stateName] = selectedOption;
-        setInfoDoctor({ ...stateCopy })
+    const handleSelectPrice = (selectedOption) => {
+        setInfoDoctor({ ...infoDoctor, selectedPrice: selectedOption })
     }
 
+    const handleSelectPayment = (selectedOption) => {
+        setInfoDoctor({ ...infoDoctor, selectedPayment: selectedOption })
+    }
 
+    const handleSelectProvince = (selectedOption) => {
+        setInfoDoctor({ ...infoDoctor, selectedProvince: selectedOption })
+    }
+
+    const handleSelectSpecialty = (selectedOption) => {
+        setInfoDoctor({ ...infoDoctor, selectedSpecialty: selectedOption })
+    }
+
+    const handleSelectClinic = (selectedOption) => {
+        setInfoDoctor({ ...infoDoctor, selectedClinic: selectedOption })
+    }
 
     return (
-        <div style={{ margin: '2rem' }}>
-            <div className='manage-doctor-container'>
-                <div className='manage-doctor-title'>
-                    <FormattedMessage id="admin.manage-doctor.title" />
-                </div>
-                <Row gutter={[16, 16]}>
-                    <Col span={12}>
-                        <Flex vertical gap={5}>
-                            <label><FormattedMessage id="admin.manage-doctor.select-doctor" /></label>
-                            <Select
-                                value={selectedDoctor}
-                                onChange={handleChangeSelect}
-                                options={listDoctors}
-                                placeholder={<FormattedMessage id="admin.manage-doctor.select-doctor" />}
-                            />
-                        </Flex>
-                    </Col>
-                    <Col span={12}>
-                        <Flex vertical gap={5}>
-                            <label><FormattedMessage id="admin.manage-doctor.intro" /></label>
-                            <Input.TextArea
-                                onChange={(event) => setMarkdown({ ...markdown, description: event.target.value })}
-                                value={markdown.description}
-                            >
-                            </Input.TextArea>
-                        </Flex>
-                    </Col>
-                </Row>
-                <Row gutter={[16, 16]} style={{ marginTop: '1rem' }}>
-                    <Col span={8}>
-                        <Flex vertical gap={5}>
-                            <label><FormattedMessage id="admin.manage-doctor.price" /></label>
-                            <Select
-                                value={infoDoctor.selectedPrice}
-                                onChange={handleChangeSelectDoctorInfo}
-                                options={listPrice}
-                                placeholder={<FormattedMessage id="admin.manage-doctor.price" />}
-                                name="selectedPrice"
-                            />
-                        </Flex>
-                    </Col>
-                    <Col span={8}>
-                        <Flex vertical gap={5}>
-                            <label><FormattedMessage id="admin.manage-doctor.payment" /></label>
-                            <Select
-                                value={infoDoctor.selectedPayment}
-                                onChange={handleChangeSelectDoctorInfo}
-                                options={listPayment}
-                                placeholder={<FormattedMessage id="admin.manage-doctor.payment" />}
-                                name="selectedPayment"
-                            />
-                        </Flex>
-                    </Col>
-                    <Col span={8}>
-                        <Flex vertical gap={5}>
-                            <label><FormattedMessage id="admin.manage-doctor.province" /></label>
-                            <Select
-                                value={infoDoctor.selectedProvince}
-                                onChange={handleChangeSelectDoctorInfo}
-                                options={listProvince}
-                                placeholder={<FormattedMessage id="admin.manage-doctor.province" />}
-                                name="selectedProvince"
-                            />
-                        </Flex>
-                    </Col>
-                    <Col span={8}>
-                        <Flex vertical gap={5}>
-                            <label><FormattedMessage id="admin.manage-doctor.note" /></label>
-                            <Input className='form-control'
-                                onChange={(event) => setInfoDoctor({ ...infoDoctor, note: event.target.value })}
-                                value={infoDoctor.note}
-                            />
-                        </Flex>
-                    </Col>
-                    <Col span={8}>
-                        <Flex vertical gap={5}>
-                            <label><FormattedMessage id="admin.manage-doctor.specialty" /></label>
-                            <Select
-                                value={infoDoctor.selectedSpecialty}
-                                onChange={handleChangeSelectDoctorInfo}
-                                options={listSpecialty}
-                                placeholder={<FormattedMessage id="admin.manage-doctor.specialty" />}
-                                name="selectedSpecialty"
-                            />
-                        </Flex>
-                    </Col>
-                    <Col span={8}>
-                        <Flex vertical gap={5}>
-                            <label><FormattedMessage id="admin.manage-doctor.clinic" /></label>
-                            <Select
-                                value={infoDoctor.selectedClinic}
-                                onChange={handleChangeSelectDoctorInfo}
-                                options={listClinic}
-                                placeholder={<FormattedMessage id="admin.manage-doctor.clinic" />}
-                                name="selectedClinic"
-                            />
-                        </Flex>
-                    </Col>
-                </Row>
-                <div style={{ margin: '1rem 0' }}>
-                    <MdEditor
-                        style={{ height: '15rem' }}
-                        renderHTML={text => mdParser.render(text)}
-                        onChange={handleEditorChange}
-                        value={markdown.contentMarkdown}
-                    />
-                </div>
-                <Button
-                    onClick={() => handleSaveContentMarkdown()}
-                    style={{ color: 'white', backgroundColor: hasOldData ? 'yellow' : 'rgb(22,119,255)' }}
-                >
-                    {hasOldData === true ?
-                        <span><FormattedMessage id="admin.manage-doctor.save" /></span>
-                        :
-                        <span><FormattedMessage id="admin.manage-doctor.add" /></span>}
-                </Button>
+        <div style={{ margin: '1rem 2rem' }}>
+            <Typography.Title level={2} style={{ textAlign: 'center' }}>
+                <FormattedMessage id="admin.manage-doctor.title" />
+            </Typography.Title>
+            <Row gutter={[16, 16]}>
+                <Col span={8}>
+                    <Flex vertical gap={5}>
+                        <label><FormattedMessage id="admin.manage-doctor.select-doctor" /></label>
+                        <Select
+                            value={selectedDoctor}
+                            onChange={handleChangeSelect}
+                            options={listDoctors}
+                        />
+                    </Flex>
+                </Col>
+                <Col span={16}>
+                    <Flex vertical gap={5}>
+                        <label><FormattedMessage id="admin.manage-doctor.intro" /></label>
+                        <Input.TextArea
+                            onChange={(event) => setMarkdown({ ...markdown, description: event.target.value })}
+                            value={markdown.description}
+                        >
+                        </Input.TextArea>
+                    </Flex>
+                </Col>
+            </Row>
+            <Row gutter={[16, 16]} style={{ marginTop: '1rem' }}>
+                <Col span={8}>
+                    <Flex vertical gap={5}>
+                        <label><FormattedMessage id="admin.manage-doctor.price" /></label>
+                        <Select
+                            value={infoDoctor.selectedPrice}
+                            onChange={handleSelectPrice}
+                            options={listPrice}
+                        />
+                    </Flex>
+                </Col>
+                <Col span={8}>
+                    <Flex vertical gap={5}>
+                        <label><FormattedMessage id="admin.manage-doctor.payment" /></label>
+                        <Select
+                            value={infoDoctor.selectedPayment}
+                            onChange={handleSelectPayment}
+                            options={listPayment}
+                        />
+                    </Flex>
+                </Col>
+                <Col span={8}>
+                    <Flex vertical gap={5}>
+                        <label><FormattedMessage id="admin.manage-doctor.province" /></label>
+                        <Select
+                            value={infoDoctor.selectedProvince}
+                            onChange={handleSelectProvince}
+                            options={listProvince}
+                        />
+                    </Flex>
+                </Col>
+                <Col span={8}>
+                    <Flex vertical gap={5}>
+                        <label><FormattedMessage id="admin.manage-doctor.note" /></label>
+                        <Input className='form-control'
+                            onChange={(event) => setInfoDoctor({ ...infoDoctor, note: event.target.value })}
+                            value={infoDoctor.note}
+                        />
+                    </Flex>
+                </Col>
+                <Col span={8}>
+                    <Flex vertical gap={5}>
+                        <label><FormattedMessage id="admin.manage-doctor.specialty" /></label>
+                        <Select
+                            value={infoDoctor.selectedSpecialty}
+                            onChange={handleSelectSpecialty}
+                            options={listSpecialty}
+                        />
+                    </Flex>
+                </Col>
+                <Col span={8}>
+                    <Flex vertical gap={5}>
+                        <label><FormattedMessage id="admin.manage-doctor.clinic" /></label>
+                        <Select
+                            value={infoDoctor.selectedClinic}
+                            onChange={handleSelectClinic}
+                            options={listClinic}
+                        />
+                    </Flex>
+                </Col>
+            </Row>
+            <div style={{ margin: '1rem 0' }}>
+                <Typography >
+                    <FormattedMessage id="admin.manage-doctor.describe" />
+                </Typography>
+                <MdEditor
+                    style={{ height: '15rem' }}
+                    renderHTML={text => mdParser.render(text)}
+                    onChange={handleEditorChange}
+                    value={markdown.contentMarkdown}
+                />
             </div>
+            <Button
+                onClick={() => handleSaveContentMarkdown()}
+                type='primary'
+            >
+                {hasOldData === true ?
+                    <span><FormattedMessage id="admin.manage-doctor.save" /></span>
+                    :
+                    <span><FormattedMessage id="admin.manage-doctor.add" /></span>}
+            </Button>
         </div>
     )
 }

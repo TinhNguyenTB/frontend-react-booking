@@ -103,12 +103,13 @@
     },
     "admin": {
         "manage-doctor": {
-            "title": "Tạo thêm thông tin bác sĩ",
+            "title": "Thông tin bác sĩ",
             "select-doctor": "Chọn bác sĩ",
             "intro": "Thông tin giới thiệu",
             "add": "Tạo thông tin",
             "save": "Lưu thông tin",
-            "price": "Gía khám bệnh",
+            "describe": "Mô tả",
+            "price": "Giá khám",
             "payment": "Phương thức thanh toán",
             "province": "Tỉnh thành",
             "nameClinic": "Tên phòng khám",
