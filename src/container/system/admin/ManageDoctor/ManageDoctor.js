@@ -232,7 +232,7 @@ const ManageDoctor = () => {
 
     return (
         <div style={{ margin: '1rem 2rem' }}>
-            <Typography.Title level={2} style={{ textAlign: 'center' }}>
+            <Typography.Title level={3} style={{ textAlign: 'center' }}>
                 <FormattedMessage id="admin.manage-doctor.title" />
             </Typography.Title>
             <Row gutter={[16, 16]}>

@@ -31,6 +31,10 @@ const HomeHeader = (props) => {
                     </div>
                     <div className='center-content'>
                         <div className='child-content'>
+                            <div className='menu-title'><b><FormattedMessage id="homeheader.introduce" /></b></div>
+                            <div className='subs-title'><FormattedMessage id="homeheader.about" /></div>
+                        </div>
+                        <div className='child-content'>
                             <div className='menu-title'><b><FormattedMessage id="homeheader.speciality" /> </b></div>
                             <div className='subs-title'><FormattedMessage id="homeheader.searchdoctor" /></div>
                         </div>
@@ -41,10 +45,6 @@ const HomeHeader = (props) => {
                         <div className='child-content'>
                             <div className='menu-title'><b><FormattedMessage id="homeheader.doctor" /></b></div>
                             <div className='subs-title'><FormattedMessage id="homeheader.select-doctor" /></div>
-                        </div>
-                        <div className='child-content'>
-                            <div className='menu-title'><b><FormattedMessage id="homeheader.fee" /></b></div>
-                            <div className='subs-title'><FormattedMessage id="homeheader.check-health" /></div>
                         </div>
                     </div>
                     <div className='right-content'>

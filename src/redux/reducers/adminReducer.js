@@ -69,7 +69,7 @@ const adminReducer = (state = initialState, action) => {
             }
         // fetch schedule time
         case actionTypes.FETCH_ALL_CODE_SCHEDULE_TIME_SUCCESS:
-            state.allScheduleTime = action.dataTime
+            state.allScheduleTime = action.data
             return {
                 ...state,
             }

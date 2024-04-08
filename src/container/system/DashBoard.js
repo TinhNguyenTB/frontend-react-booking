@@ -5,7 +5,7 @@ const DashBoard = () => {
     return (
         <div style={{
             width: '100vw',
-            height: '93vh',
+            height: '100vh',
             backgroundImage: `url(${bg})`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',

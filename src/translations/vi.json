@@ -6,8 +6,8 @@
         "select-room": "Chọn bệnh viện phòng khám",
         "doctor": "Bác sĩ",
         "select-doctor": "Chọn bác sĩ giỏi",
-        "fee": "Gói khám",
-        "check-health": "Khám sức khỏe tổng quát",
+        "introduce": "Giới thiệu",
+        "about": "Về BookingCare",
         "support": "Hỗ trợ",
         "welcome": "Xin chào"
     },
@@ -63,9 +63,10 @@
         "medical-facility": "Cơ sở y tế"
     },
     "manage-schedule": {
-        "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
+        "title": "Quản lý lịch khám bệnh của bác sĩ",
         "choose-doctor": "Chọn bác sĩ",
         "choose-date": "Chọn ngày",
+        "choose-time": "Chọn thời gian",
         "save": "Lưu thông tin"
     },
     "patient": {

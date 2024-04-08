@@ -240,24 +240,25 @@ export const getRequiredDoctorInfo = () => {
     }
 }
 
-// export const saveDetailDoctor = (data) => {
-//     return async (dispatch, getState) => {
-//         try {
-//             let res = await saveDetailDoctorService(data)
-//             if (res && res.errCode === 0) {
-//                 dispatch({
-//                     type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
-//                 })
-//                 message.success('Save infor detail doctor successful!')
-//             } else {
-//                 dispatch({
-//                     type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED
-//                 });
-//                 message.error('Save infor detail doctor failed!')
-//             }
-//         } catch (error) {
-//             dispatch(saveDetailDoctorFaied());
-//             console.log('saveDetailDoctor error:', error)
-//         }
-//     }
-// }
+export const fetchAllScheduleTime = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCodeService("TIME")
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_CODE_SCHEDULE_TIME_SUCCESS,
+                    data: res.data
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_CODE_SCHEDULE_TIME_FAILED
+                });
+            }
+        } catch (error) {
+            dispatch({
+                type: actionTypes.FETCH_ALL_CODE_SCHEDULE_TIME_FAILED
+            });
+            console.log('fetchAllScheduleTime error:', error)
+        }
+    }
+}

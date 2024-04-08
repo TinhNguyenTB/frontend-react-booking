@@ -15,7 +15,7 @@ export const adminMenu = [
     },
     {
         // Quản lý kế hoạch khám bệnh của bác sĩ
-        label: <FormattedMessage id='menu.doctor.manage-schedule' />, key: '/doctor/manage-schedule'
+        label: <FormattedMessage id='menu.doctor.manage-schedule' />, key: '/system/manage-schedule'
     },
     { // Quản lý phòng khám
         label: <FormattedMessage id='menu.admin.clinic' />,
@@ -32,15 +32,7 @@ export const adminMenu = [
                 label: <FormattedMessage id='menu.admin.manage-specialty' />, key: '/system/manage-specialty'
             },
         ]
-    },
-    { // Quản lý cẩm nang
-        label: <FormattedMessage id='menu.admin.handbook' />,
-        children: [
-            {
-                label: <FormattedMessage id='menu.admin.manage-handbook' />, key: '/system/manage-handbook'
-            },
-        ]
-    },
+    }
 ];
 
 export const doctorMenu = [

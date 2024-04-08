@@ -6,6 +6,7 @@ import SystemHeader from '../container/system/SystemHeader';
 import ManageUser from '../container/system/admin/ManageUser/ManageUser.js';
 import Unauthentication from '../container/system/auth/Unauthentication.js';
 import ManageDoctor from '../container/system/admin/ManageDoctor/ManageDoctor.js';
+import ManageSchedule from '../container/system/admin/ManageSchedule/ManageSchedule.js';
 
 
 const System = () => {
@@ -17,6 +18,7 @@ const System = () => {
             <Routes>
                 <Route path='manage-user' element={<ManageUser />} />
                 <Route path="manage-doctor" element={<ManageDoctor />} />
+                <Route path='manage-schedule' element={<ManageSchedule />} />
                 <Route path='*' element={isLogin ? <DashBoard /> : <Unauthentication />} />
             </Routes>
         </div>
