@@ -167,8 +167,8 @@ const ManageSchedule = () => {
 
                 </Col>
             </Row>
-            <div className='col-12'>
-                <Button
+            <div>
+                <Button style={{ marginLeft: '0.6rem' }}
                     onClick={() => handleSaveSchedule()}
                 >
                     <FormattedMessage id="manage-schedule.save" />

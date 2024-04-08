@@ -8,7 +8,6 @@ import { LANGUAGES, CRUD_ACTIONS } from '../../../../utils/constant';
 import { getDetailInfoDoctor, saveDetailDoctorService } from '../../../../services/adminService';
 import { getRequiredDoctorInfo, fetchAllDoctor } from '../../../../redux/actions/adminActions';
 import { Row, Col, Flex, Input, Select, Button, Typography, message } from 'antd';
-import NumberFormat from 'react-number-format';
 
 const ManageDoctor = () => {
     const mdParser = new MarkdownIt(/* Markdown-it options */);
@@ -57,8 +56,8 @@ const ManageDoctor = () => {
             else if (type === 'PRICE') {
                 inputData.map((item, index) => {
                     let object = {}
-                    let labelVi = `${item.valueVi}`
-                    let labelEn = `${item.valueEn} USD`
+                    let labelVi = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.valueVi);
+                    let labelEn = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(item.valueEn);
                     object.label = language === LANGUAGES.VI ? labelVi : labelEn
                     object.value = item.keyMap
                     result.push(object)
