@@ -21,6 +21,9 @@
         "mental-health": "Sức khỏe tinh thần",
         "dental-examination": "Khám nha khoa"
     },
+    "about": {
+        "title": "Giới thiệu về BookingCare"
+    },
     "menu": {
         "admin": {
             "manage-user": "Quản lý người dùng",

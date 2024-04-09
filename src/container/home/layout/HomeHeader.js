@@ -6,7 +6,7 @@ import { changeLanguageApp } from '../../../redux/actions/appActions'
 import { useNavigate } from 'react-router-dom';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import logo from '../../../assets/logo.svg'
-
+import { path } from '../../../utils/constant';
 
 const HomeHeader = (props) => {
     const navigate = useNavigate();
@@ -30,7 +30,7 @@ const HomeHeader = (props) => {
                         <img className='header-logo' alt='logo' src={logo} onClick={() => returnToHome()} />
                     </div>
                     <div className='center-content'>
-                        <div className='child-content'>
+                        <div className='child-content' onClick={() => navigate(path.ABOUT)}>
                             <div className='menu-title'><b><FormattedMessage id="homeheader.introduce" /></b></div>
                             <div className='subs-title'><FormattedMessage id="homeheader.about" /></div>
                         </div>

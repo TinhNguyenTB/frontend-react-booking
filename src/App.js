@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import VerifyEmail from './container/pages/VerifyEmail';
 import { useDispatch } from 'react-redux';
 import { fetchUserAccount } from './redux/actions/accountAction';
+import About from './container/pages/About';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
     <Scrollbars autoHide style={{ height: '100vh' }}>
       <Routes>
         <Route path={path.HOME} element={<HomePage />} />
+        <Route path={path.ABOUT} element={<About />} />
         <Route path={path.DETAIL_DOCTOR} element={<DetailDoctor />} />
         <Route path={path.DETAIL_SPECIALTY} element={<DetailSpecialty />} />
         <Route path={path.DETAIL_CLINIC} element={<DetailClinic />} />

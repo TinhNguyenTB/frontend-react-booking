@@ -21,6 +21,9 @@
         "mental-health": "Mental health",
         "dental-examination": "Dental examination"
     },
+    "about": {
+        "title": "Introduce about BookingCare"
+    },
     "menu": {
         "admin": {
             "manage-user": "Users system",
