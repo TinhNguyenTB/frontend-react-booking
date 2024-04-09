@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { LANGUAGES, REGEX } from '../../../../../utils/constant';
 import { FormattedMessage } from 'react-intl';
-import { Modal, message, Select, Row, Col, Input, Flex } from 'antd';
+import { Modal, message, Select, Row, Col, Input, Flex, Typography } from 'antd';
 import moment from 'moment';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGender } from '../../../../../redux/actions/userActions';
 import { postPatientBookAppointment } from '../../../../../services/userService';
 import ProfileDoctor from '../ProfileDoctor';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const BookingModal = (props) => {
     const dispatch = useDispatch();
@@ -290,6 +291,22 @@ const BookingModal = (props) => {
                                 onChange={(event) => handleOnChangeInput(event.target.value, 'reason')}
                             />
                         </Flex>
+                    </Col>
+                    <Col span={24} style={{ backgroundColor: 'rgb(157,219,251)', padding: '1rem 1rem 0', borderRadius: '0.5rem' }}>
+                        <Typography.Paragraph strong>
+                            <FormattedMessage id='booking-modal.note' />
+                        </Typography.Paragraph>
+                        <Typography.Text strong>
+                            <FormattedMessage id='booking-modal.description1' />
+                        </Typography.Text>
+                        <Typography.Paragraph strong style={{ marginBottom: 0 }}>
+                            <FontAwesomeIcon icon="fa-solid fa-marker" style={{ marginRight: '0.5rem' }} />
+                            <FormattedMessage id='booking-modal.description2' />
+                        </Typography.Paragraph>
+                        <Typography.Paragraph strong>
+                            <FontAwesomeIcon icon="fa-solid fa-marker" style={{ marginRight: '0.5rem' }} />
+                            <FormattedMessage id='booking-modal.description3' />
+                        </Typography.Paragraph>
                     </Col>
                 </Row>
             </div>

@@ -11,15 +11,11 @@
         "support": "Support",
         "welcome": "Welcome"
     },
-    "banner": {
-        "title1": "MEDICAL PLATFORM",
-        "title2": "COMPREHENSIVE HEALTH CARE",
-        "specialized-examination": "Specialized examination",
-        "remote-examination": "Remote examination",
-        "general-examination": "General examination",
-        "medical-tests": "Medical tests",
-        "mental-health": "Mental health",
-        "dental-examination": "Dental examination"
+    "booking-modal": {
+        "note": "NOTE",
+        "description1": "The information you provide will be used as medical records. When filling in the information, please:",
+        "description2": "Clearly state your full name, capitalizing the first letters, for example: Tran Van Phu",
+        "description3": "Fill in completely and correctly and please check the information again before pressing 'Ok'"
     },
     "about": {
         "title": "Introduce about BookingCare"

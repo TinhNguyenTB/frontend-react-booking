@@ -45,11 +45,11 @@ const SystemHeader = () => {
             <Navigation />
             {language === LANGUAGES.VI ?
                 <Typography.Title level={4}>
-                    Xin chào, {userInfo.lastName} {userInfo.firstName}
+                    Xin chào, {userInfo.firstName}
                 </Typography.Title>
                 :
                 <Typography.Title level={4}>
-                    Hello, {userInfo.firstName} {userInfo.lastName}
+                    Hello, {userInfo.firstName}
                 </Typography.Title>
             }
             <Flex gap={'1rem'}>
