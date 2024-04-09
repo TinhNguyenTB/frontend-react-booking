@@ -6,11 +6,19 @@ import { saveBulkScheduleDoctor } from '../../../../services/adminService';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllDoctor, fetchAllScheduleTime } from '../../../../redux/actions/adminActions';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+dayjs.extend(customParseFormat);
+
+const today = dayjs();
+const startOfMonth = today.startOf('month');
+const endOfMonth = today.endOf('month');
+
 
 const ManageSchedule = () => {
 
     const [listDoctors, setListDoctors] = useState([]);
-    const [selectedDoctor, setSelectedDoctor] = useState({});
+    const [selectedDoctor, setSelectedDoctor] = useState("");
     const [currentDate, setCurrentDate] = useState("");
     const [rangeTime, setRangeTime] = useState([]);
     const dispatch = useDispatch();
@@ -71,7 +79,12 @@ const ManageSchedule = () => {
     };
 
     const handleOnChangeDatePicker = (date) => {
-        setCurrentDate(date[0])
+        if (date && date.isValid && typeof date.isValid === 'function') {
+            setCurrentDate(date);
+        } else {
+            console.log('Invalid date:', date);
+            setCurrentDate(null);
+        }
     }
 
     const handleSaveSchedule = async () => {
@@ -80,19 +93,19 @@ const ManageSchedule = () => {
             message.error("Invalid selected date!")
             return;
         }
-        if (selectedDoctor && _.isEmpty(selectedDoctor)) {
+        if (!selectedDoctor) {
             message.error("Invalid selected doctor!")
             return;
         }
-        let formatedDate = new Date(currentDate).getTime();
+        let timestamp = dayjs(currentDate).valueOf(); // Convert to timestamp
         if (rangeTime && rangeTime.length > 0) {
             let selectedTime = rangeTime.filter(item => item.isSeleted === true);
             if (selectedTime && selectedTime.length > 0) {
                 selectedTime.map(item => {
                     let object = {};
-                    object.doctorId = selectedDoctor.value;
+                    object.doctorId = selectedDoctor;
                     object.timeType = item.keyMap;
-                    object.date = formatedDate;
+                    object.date = timestamp;
                     result.push(object);
                 })
             }
@@ -103,8 +116,8 @@ const ManageSchedule = () => {
         }
         let res = await saveBulkScheduleDoctor({
             arrSchedule: result,
-            doctorId: selectedDoctor.value,
-            formatedDate: formatedDate
+            doctorId: selectedDoctor,
+            formatedDate: timestamp
         });
         if (res && res.errCode === 0) {
             message.success("Save Schedule Doctor successfully!");
@@ -114,8 +127,6 @@ const ManageSchedule = () => {
             console.log("Error saveBulkScheduleDoctor:", res)
         }
     }
-
-    let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
 
     return (
         <Flex vertical style={{ margin: '1rem 2rem' }}>
@@ -139,8 +150,11 @@ const ManageSchedule = () => {
                         <label> <FormattedMessage id="manage-schedule.choose-date" /></label>
                         <DatePicker
                             onChange={handleOnChangeDatePicker}
+                            defaultValue={today}
+                            format={language === LANGUAGES.VI ? 'DD-MM-YYYY' : 'MM-DD-YYYY'}
                             value={currentDate}
-                            minDate={yesterday}
+                            minDate={startOfMonth}
+                            maxDate={endOfMonth}
                         />
                     </Flex>
                 </Col>
