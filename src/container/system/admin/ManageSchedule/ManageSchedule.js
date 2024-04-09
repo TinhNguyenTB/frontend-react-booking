@@ -6,6 +6,8 @@ import { saveBulkScheduleDoctor } from '../../../../services/adminService';
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllDoctor, fetchAllScheduleTime } from '../../../../redux/actions/adminActions';
+import { getScheduleDoctorByDate } from '../../../../services/appService';
+
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 dayjs.extend(customParseFormat);
@@ -13,7 +15,6 @@ dayjs.extend(customParseFormat);
 const today = dayjs();
 const startOfMonth = today.startOf('month');
 const endOfMonth = today.endOf('month');
-
 
 const ManageSchedule = () => {
 
@@ -36,15 +37,19 @@ const ManageSchedule = () => {
         setListDoctors(dataSelect);
     }, [allDoctors])
 
-    useEffect(() => {
+    const setDefaultRangeTime = () => {
         let data = allScheduleTime;
         if (data && data.length > 0) {
             data.map(item => {
-                item.isSeleted = false;
+                item.isSelected = false;
                 return item;
             })
         }
         setRangeTime(data)
+    }
+
+    useEffect(() => {
+        setDefaultRangeTime()
     }, [allScheduleTime])
 
     const buildDataInputSelect = (inputData) => {
@@ -62,30 +67,51 @@ const ManageSchedule = () => {
         return result;
     }
 
-    const handleChangeSelect = (selectedOption) => {
+    const getSchedule = async (doctorId, date) => {
+        let res = await getScheduleDoctorByDate(doctorId, date)
+        if (res && res.errCode === 0) {
+            let dataSchedule = res.data;
+            if (rangeTime && rangeTime.length > 0 && dataSchedule && dataSchedule.length > 0) {
+                setRangeTime(prevRangeTime => {
+                    const updatedRangeTime = prevRangeTime.map(item => {
+                        const foundSchedule = dataSchedule.find(schedule => schedule.timeType === item.keyMap);
+                        if (foundSchedule) {
+                            return { ...item, isSelected: true };
+                        }
+                        return item;
+                    });
+                    return updatedRangeTime;
+                });
+            }
+        }
+    }
+
+    const handleChangeSelect = async (selectedOption) => {
         setSelectedDoctor(selectedOption)
+        let timestamp = dayjs(currentDate).valueOf(); // Convert to timestamp
+        setDefaultRangeTime();
+        getSchedule(selectedOption, timestamp)
+
+    }
+
+    const handleOnChangeDatePicker = async (date) => {
+        setCurrentDate(date);
+        let timestamp = dayjs(date).valueOf(); // Convert to timestamp
+        setDefaultRangeTime();
+        getSchedule(selectedDoctor, timestamp)
     }
 
     const handleClickBtnTime = (time) => {
         if (rangeTime && rangeTime.length > 0) {
             const updatedRangeTime = rangeTime.map(item => {
                 if (item.id === time.id) {
-                    return { ...item, isSeleted: !item.isSeleted };
+                    return { ...item, isSelected: !item.isSelected };
                 }
                 return item;
             });
             setRangeTime(updatedRangeTime);
         }
     };
-
-    const handleOnChangeDatePicker = (date) => {
-        if (date && date.isValid && typeof date.isValid === 'function') {
-            setCurrentDate(date);
-        } else {
-            console.log('Invalid date:', date);
-            setCurrentDate(null);
-        }
-    }
 
     const handleSaveSchedule = async () => {
         let result = [];
@@ -99,7 +125,7 @@ const ManageSchedule = () => {
         }
         let timestamp = dayjs(currentDate).valueOf(); // Convert to timestamp
         if (rangeTime && rangeTime.length > 0) {
-            let selectedTime = rangeTime.filter(item => item.isSeleted === true);
+            let selectedTime = rangeTime.filter(item => item.isSelected === true);
             if (selectedTime && selectedTime.length > 0) {
                 selectedTime.map(item => {
                     let object = {};
@@ -150,7 +176,6 @@ const ManageSchedule = () => {
                         <label> <FormattedMessage id="manage-schedule.choose-date" /></label>
                         <DatePicker
                             onChange={handleOnChangeDatePicker}
-                            defaultValue={today}
                             format={language === LANGUAGES.VI ? 'DD-MM-YYYY' : 'MM-DD-YYYY'}
                             value={currentDate}
                             minDate={startOfMonth}
@@ -169,7 +194,7 @@ const ManageSchedule = () => {
                             return (
                                 <Button
                                     onClick={() => handleClickBtnTime(item)}
-                                    type={item.isSeleted === true ? 'primary' : 'default'}
+                                    type={item.isSelected === true ? 'primary' : 'default'}
                                     key={`btn-schedule-${index}`}
                                     style={{ marginLeft: '0.6rem' }}
                                 >
@@ -183,6 +208,7 @@ const ManageSchedule = () => {
             </Row>
             <div>
                 <Button style={{ marginLeft: '0.6rem' }}
+                    type='primary'
                     onClick={() => handleSaveSchedule()}
                 >
                     <FormattedMessage id="manage-schedule.save" />
