@@ -70,6 +70,7 @@ const ManageUser = () => {
                         <FormattedMessage id="manage-user.edit" />
                     </Button>
                     <Popconfirm
+                        placement="topRight"
                         title={language === LANGUAGES.EN ? "Delete user" : "Xóa người dùng"}
                         description={language === LANGUAGES.EN
                             ? "Are you sure to delete this user?"

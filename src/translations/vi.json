@@ -68,6 +68,12 @@
         "choose-time": "Chọn thời gian",
         "save": "Lưu thông tin"
     },
+    "manage-clinic": {
+        "add": "Thêm mới phòng khám",
+        "clinic-name": "Tên phòng khám",
+        "clinic-address": "Địa chỉ phòng khám",
+        "clinic-image": "Ảnh phòng khám"
+    },
     "patient": {
         "detail-doctor": {
             "schedule": "Lịch khám",

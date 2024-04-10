@@ -68,6 +68,12 @@
         "choose-time": "Choose time",
         "save": "Save"
     },
+    "manage-clinic": {
+        "add": "Create a new clinic",
+        "clinic-name": "Clinic's name",
+        "clinic-address": "Clinic's address",
+        "clinic-image": "Clinic's image"
+    },
     "patient": {
         "detail-doctor": {
             "schedule": "schedule",

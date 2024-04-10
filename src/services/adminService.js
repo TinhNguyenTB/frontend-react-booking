@@ -36,9 +36,18 @@ const saveBulkScheduleDoctor = (data) => {
     return axios.post('/api/bulk-create-schedule', data)
 }
 
+const createNewClinic = (data) => {
+    return axios.post('/api/create-new-clinic', data)
+}
+
+const deleteClinicService = (clinicId) => {
+    return axios.delete('/api/delete-clinic', { data: { id: clinicId } })
+}
+
 export {
     getAllCodeService,
     getListUser, createNewUserService, deleteUserService, editUserService,
     getAllDoctors, getDetailInfoDoctor, saveDetailDoctorService,
-    saveBulkScheduleDoctor
+    saveBulkScheduleDoctor,
+    createNewClinic, deleteClinicService
 }
