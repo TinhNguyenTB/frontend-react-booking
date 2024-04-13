@@ -115,6 +115,7 @@ const ManageUser = () => {
                 <FormattedMessage id='manage-user.add' />
             </Button>
             <Table
+                bordered
                 rowKey="id"
                 dataSource={arrUsers}
                 columns={columns}

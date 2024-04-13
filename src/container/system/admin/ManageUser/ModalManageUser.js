@@ -67,8 +67,9 @@ const ModalManageUser = (props) => {
     const handleEditUser = (user) => {
         let imageBase64 = '';
         if (user.image) {
-            imageBase64 = new Buffer(user.image, 'base64').toString('binary');
+            imageBase64 = Buffer.from(user.image, 'base64').toString('binary');
         }
+
         setUserInfo({
             ...userInfo,
             email: user.email,
@@ -273,7 +274,7 @@ const ModalManageUser = (props) => {
                 width={'60rem'}
                 centered
                 onOk={() => handleSaveUser()}
-                onCancel={props.closeModal}
+                onCancel={() => resetValue()}
             >
                 <Row gutter={[16, 16]}>
                     <Col span={12}>

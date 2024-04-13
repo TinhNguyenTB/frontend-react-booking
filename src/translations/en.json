@@ -70,6 +70,7 @@
     },
     "manage-clinic": {
         "add": "Create a new clinic",
+        "edit": "Update clinic",
         "clinic-name": "Clinic's name",
         "clinic-address": "Clinic's address",
         "clinic-image": "Clinic's image"

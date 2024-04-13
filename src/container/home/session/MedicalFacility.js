@@ -5,20 +5,17 @@ import { FormattedMessage } from 'react-intl';
 import { Button } from 'antd';
 import './MedicalFacility.scss'
 import { getAllClinic } from "../../../services/appService";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllClinic } from "../../../redux/actions/adminActions";
 
 const MedicalFacility = (props) => {
-    const [dataClinics, setDataClinics] = useState([]);
+    const dataClinics = useSelector(state => state.app.listClinic)
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const fetchData = async () => {
-        let res = await getAllClinic();
-        if (res && res.errCode === 0) {
-            setDataClinics(res.data ? res.data : [])
-        }
-    }
 
     useEffect(() => {
-        fetchData();
+        dispatch(fetchAllClinic())
         // eslint-disable-next-line
     }, [])
 

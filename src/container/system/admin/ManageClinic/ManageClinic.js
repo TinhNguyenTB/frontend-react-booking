@@ -1,33 +1,29 @@
-import { createNewClinic, deleteClinicService } from '../../../../services/adminService';
-import { getAllClinic } from '../../../../services/appService';
+import { createNewClinic } from '../../../../services/adminService';
+import { fetchAllClinic, editClinic, deleteClinic } from '../../../../redux/actions/adminActions.js'
 import { useEffect, useState } from 'react';
-import ModalAddClinic from './ModalAddClinic';
+import ModalManageClinic from './ModalManageClinic.js';
 import { message, Button, Table, Popconfirm } from 'antd';
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../../../utils/constant';
-import { useSelector } from 'react-redux';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { emitter } from '../../../../utils/emitter.js';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ManageClinic = () => {
-    const [listClinic, setListClinic] = useState([]);
     const [openModal, setOpenModal] = useState(false);
     const language = useSelector(state => state.app.language);
     const [currentPages, setCurrentPages] = useState(1);
     const [currentLimit, setCurrentLimit] = useState(6);
+    const dispatch = useDispatch();
+    const listClinic = useSelector(state => state.app.listClinic)
 
     const closeModal = () => {
         setOpenModal(false);
     }
 
     useEffect(() => {
-        const fetchData = async () => {
-            let res = await getAllClinic();
-            if (res && res.errCode === 0) {
-                setListClinic(res.data ? res.data.reverse() : [])
-            }
-        }
-        fetchData()
-    }, [listClinic])
+        dispatch(fetchAllClinic())
+    }, []);
 
     const columns = [
         {
@@ -52,7 +48,7 @@ const ManageClinic = () => {
                     <Button
                         icon={<EditOutlined style={{ color: 'rgb(145,73,0)', marginRight: '0.3rem' }} />}
                         style={{ marginRight: '1rem' }}
-                    // onClick={() => handleEditUser(record)}
+                        onClick={() => handleEditClinic(record)}
                     >
                         <FormattedMessage id="manage-user.edit" />
                     </Button>
@@ -61,7 +57,7 @@ const ManageClinic = () => {
                         title={language === LANGUAGES.EN ? "Delete clinic" : "Xóa phòng khám"}
                         description={language === LANGUAGES.EN
                             ? "Are you sure to delete this clinic?"
-                            : "Bạn có chắc muốn xóa người phòng khám này?"}
+                            : "Bạn có chắc muốn xóa phòng khám này?"}
                         onConfirm={() => handleDeleteClinic(record)}
                         onCancel={cancel}
                         okText={language === LANGUAGES.EN ? "Yes" : "Có"}
@@ -80,25 +76,23 @@ const ManageClinic = () => {
         return;
     };
 
-
-    const handleDeleteClinic = async (clinic) => {
-        let res = await deleteClinicService(clinic.id);
-        if (res && res.errCode === 0) {
-            message.success("Delete clinic successfully!")
-        }
-        else {
-            message.error("Delete clinic failed!")
-        }
+    const handleDeleteClinic = (clinic) => {
+        dispatch(deleteClinic(clinic.id))
     }
 
     const handleCreateNewClinic = async (clinicInfo) => {
         let res = await createNewClinic(clinicInfo);
         if (res && res.errCode === 0) {
+            dispatch(fetchAllClinic())
             message.success("Create new clinic successfully!")
         }
         else {
             message.error("Create new clinic failed!");
         }
+    }
+
+    const handleEditClinic = (clinic) => {
+        emitter.emit("EditClinic", clinic)
     }
 
     return (
@@ -108,12 +102,14 @@ const ManageClinic = () => {
                 type='primary' onClick={() => setOpenModal(true)}>
                 <FormattedMessage id='manage-clinic.add' />
             </Button>
-            <ModalAddClinic
+            <ModalManageClinic
                 open={openModal}
                 closeModal={closeModal}
                 handleCreateNewClinic={handleCreateNewClinic}
+                setOpenModal={setOpenModal}
             />
             <Table
+                bordered
                 rowKey="id"
                 dataSource={listClinic}
                 columns={columns}

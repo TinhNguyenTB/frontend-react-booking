@@ -44,10 +44,14 @@ const deleteClinicService = (clinicId) => {
     return axios.delete('/api/delete-clinic', { data: { id: clinicId } })
 }
 
+const editClinicService = (clinic) => {
+    return axios.put('/api/edit-clinic', clinic)
+}
+
 export {
     getAllCodeService,
     getListUser, createNewUserService, deleteUserService, editUserService,
     getAllDoctors, getDetailInfoDoctor, saveDetailDoctorService,
     saveBulkScheduleDoctor,
-    createNewClinic, deleteClinicService
+    createNewClinic, deleteClinicService, editClinicService
 }

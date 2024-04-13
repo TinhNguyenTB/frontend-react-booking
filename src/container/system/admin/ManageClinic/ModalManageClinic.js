@@ -2,18 +2,22 @@ import { useSelector } from 'react-redux';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import CommonUtils from '../../../../utils/CommonUtils';
-import { useState } from 'react';
-import { LANGUAGES } from '../../../../utils/constant';
+import { useEffect, useState } from 'react';
+import { LANGUAGES, CRUD_ACTIONS } from '../../../../utils/constant';
 import { Avatar, Flex, Image, Col, Row, Input, Modal, message } from 'antd'
 import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { emitter } from '../../../../utils/emitter';
+import { editClinicService } from '../../../../services/adminService';
+import { useDispatch } from 'react-redux';
+import { editClinic } from '../../../../redux/actions/adminActions.js'
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
-const ModalAddClinic = (props) => {
+const ModalManageClinic = (props) => {
     const defaultValue = {
         name: '',
-        imageBase64: '',
+        image: '',
         descriptionMarkdown: '',
         descriptionHTML: '',
         address: ''
@@ -22,20 +26,12 @@ const ModalAddClinic = (props) => {
     const [isOpenPreviewImg, setIsOpenPreviewImg] = useState(false);
     const [previewImageUrl, setPreviewImageUrl] = useState("");
     const language = useSelector(state => state.app.language);
+    const [action, setAction] = useState(CRUD_ACTIONS.CREATE);
+    const [clinicEditId, setClinicEditId] = useState("");
+    const dispatch = useDispatch();
 
     const handleEditorChange = ({ html, text }) => {
         setClinicInfo({ ...clinicInfo, descriptionHTML: html, descriptionMarkdown: text })
-    }
-
-    const handleOnChangeImage = async (event) => {
-        let data = event.target.files;
-        let file = data[0];
-        if (file) {
-            let base64 = await CommonUtils.getBase64(file)
-            let objectUrl = URL.createObjectURL(file);
-            setPreviewImageUrl(objectUrl)
-            setClinicInfo({ ...clinicInfo, imageBase64: base64 });
-        }
     }
 
     const openPreviewImage = () => {
@@ -49,6 +45,7 @@ const ModalAddClinic = (props) => {
 
     const resetValue = () => {
         setClinicInfo(defaultValue);
+        setAction(CRUD_ACTIONS.CREATE)
         setPreviewImageUrl("")
         props.closeModal()
     }
@@ -68,6 +65,13 @@ const ModalAddClinic = (props) => {
             )
             return false;
         }
+        else if (!clinicInfo.image) {
+            message.error(language === LANGUAGES.EN ?
+                `Please upload clinic's image`
+                : 'Vui lòng tải lên hình ảnh của phòng khám'
+            )
+            return false;
+        }
         else if (!clinicInfo.descriptionMarkdown) {
             message.error(language === LANGUAGES.EN ?
                 `Please enter clinic's describe`
@@ -78,23 +82,68 @@ const ModalAddClinic = (props) => {
         return true;
     }
 
-    const handleCreate = () => {
+    useEffect(() => {
+        emitter.on("EditClinic", (clinic) => {
+            handleEditClinic(clinic)
+        })
+    }, [])
+
+    const handleEditClinic = (clinic) => {
+        setClinicInfo({
+            ...clinicInfo,
+            name: clinic.name,
+            address: clinic.address,
+            descriptionHTML: clinic.descriptionHTML,
+            descriptionMarkdown: clinic.descriptionMarkdown,
+            image: clinic.image
+        })
+        setPreviewImageUrl(clinic.image);
+        setAction(CRUD_ACTIONS.EDIT);
+        setClinicEditId(clinic.id)
+        props.setOpenModal(true);
+    }
+
+    const handleSaveClinic = async () => {
         let isValid = checkValidateInput()
         if (isValid === false) {
-            return
+            return;
         }
-        props.handleCreateNewClinic(clinicInfo)
-        resetValue();
+        if (action === CRUD_ACTIONS.CREATE) {
+            props.handleCreateNewClinic({ ...clinicInfo })
+            resetValue()
+        }
+        if (action === CRUD_ACTIONS.EDIT) {
+            dispatch(editClinic({
+                id: clinicEditId,
+                name: clinicInfo.name,
+                descriptionHTML: clinicInfo.descriptionHTML,
+                descriptionMarkdown: clinicInfo.descriptionMarkdown,
+                address: clinicInfo.address,
+                image: clinicInfo.image
+            }))
+            resetValue()
+        }
+    }
+
+    const handleOnChangeImage = async (event) => {
+        let data = event.target.files;
+        let file = data[0];
+        if (file) {
+            let base64 = await CommonUtils.getBase64(file);
+            let objectUrl = URL.createObjectURL(file);
+            setPreviewImageUrl(objectUrl)
+            setClinicInfo({ ...clinicInfo, image: base64 });
+        }
     }
 
     return (
         <Modal
-            title={<FormattedMessage id='manage-clinic.add' />}
+            title={action === CRUD_ACTIONS.CREATE ? <FormattedMessage id='manage-clinic.add' /> : <FormattedMessage id='manage-clinic.edit' />}
             open={props.open}
             width={'80rem'}
             centered
-            onOk={() => handleCreate()}
-            onCancel={props.closeModal}
+            onOk={() => handleSaveClinic()}
+            onCancel={() => resetValue()}
         >
             <Row gutter={[16, 16]}>
                 <Col span={12}>
@@ -122,7 +171,8 @@ const ModalAddClinic = (props) => {
                             <input id='previewImg' type='file' hidden
                                 onChange={(event) => handleOnChangeImage(event)}
                             />
-                            <label className='label-upload' htmlFor='previewImg'>
+                            <label className='label-upload' htmlFor='previewImg'
+                                style={{ backgroundColor: '#eee', textAlign: 'center' }}>
                                 <FormattedMessage id="manage-user.upload" /> <FontAwesomeIcon icon="fa-solid fa-upload" />
                             </label>
                         </Flex>
@@ -150,7 +200,7 @@ const ModalAddClinic = (props) => {
                 <Col span={24}>
                     <FormattedMessage id='admin.manage-doctor.describe' />
                     <MdEditor
-                        style={{ height: '300px' }}
+                        style={{ height: '20rem' }}
                         renderHTML={text => mdParser.render(text)}
                         onChange={handleEditorChange}
                         value={clinicInfo.descriptionMarkdown}
@@ -161,4 +211,4 @@ const ModalAddClinic = (props) => {
     )
 }
 
-export default ModalAddClinic
+export default ModalManageClinic

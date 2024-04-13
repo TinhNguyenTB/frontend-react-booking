@@ -2,9 +2,11 @@ import actionTypes from "./actionTypes";
 import {
     getAllCodeService,
     getListUser, deleteUserService, createNewUserService, editUserService,
-    getAllDoctors
+    getAllDoctors,
+    deleteClinicService, editClinicService
 
 } from "../../services/adminService";
+
 import { getAllSpecialty, getAllClinic } from '../../services/appService'
 import { message } from "antd";
 
@@ -195,6 +197,61 @@ export const fetchAllDoctor = () => {
                 type: actionTypes.FETCH_ALL_DOCTORS_FAILED
             });
             console.log('fetchAllDoctor error:', error)
+        }
+    }
+}
+
+export const fetchAllClinic = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllClinic()
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_LIST_CLINIC_SUCCESS,
+                    data: res.data.reverse()
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_LIST_CLINIC_FAILED
+                });
+            }
+        } catch (error) {
+            dispatch({
+                type: actionTypes.FETCH_LIST_CLINIC_FAILED
+            });
+            console.log('fetch list clinic error:', error)
+        }
+    }
+}
+
+export const editClinic = (clinic) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editClinicService(clinic)
+            if (res && res.errCode === 0) {
+                message.success("Update clinic successfully!");
+                dispatch(fetchAllClinic())
+            } else {
+                message.error("Update clinic failed");
+            }
+        } catch (error) {
+            console.log('update clinic error:', error)
+        }
+    }
+}
+
+export const deleteClinic = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deleteClinicService(id)
+            if (res && res.errCode === 0) {
+                message.success("Delete clinic successfully!");
+                dispatch(fetchAllClinic())
+            } else {
+                message.error("Delete clinic failed");
+            }
+        } catch (error) {
+            console.log('delete clinic error:', error)
         }
     }
 }

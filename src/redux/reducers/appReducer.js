@@ -1,9 +1,9 @@
 import actionTypes from '../actions/actionTypes';
 
-
 const initialState = {
     language: 'vi',
     topDoctors: [],
+    listClinic: []
 }
 
 const appReducer = (state = initialState, action) => {
@@ -22,6 +22,17 @@ const appReducer = (state = initialState, action) => {
             }
         case actionTypes.FETCH_TOP_DOCTORS_FAILED:
             state.topDoctors = []
+            return {
+                ...state,
+            }
+        // fetch list clinic
+        case actionTypes.FETCH_LIST_CLINIC_SUCCESS:
+            state.listClinic = action.data
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_LIST_CLINIC_FAILED:
+            state.listClinic = []
             return {
                 ...state,
             }
