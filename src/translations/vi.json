@@ -73,7 +73,13 @@
         "edit": "Cập nhật phòng khám",
         "clinic-name": "Tên phòng khám",
         "clinic-address": "Địa chỉ phòng khám",
-        "clinic-image": "Ảnh phòng khám"
+        "clinic-logo": "Logo phòng khám"
+    },
+    "manage-specialty": {
+        "add": "Thêm mới chuyên khoa",
+        "edit": "Cập nhật chuyên khoa",
+        "specialty-name": "Tên chuyên khoa",
+        "specialty-image": "Ảnh chuyên khoa"
     },
     "patient": {
         "detail-doctor": {

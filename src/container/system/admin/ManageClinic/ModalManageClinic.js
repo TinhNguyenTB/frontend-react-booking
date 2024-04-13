@@ -8,7 +8,6 @@ import { Avatar, Flex, Image, Col, Row, Input, Modal, message } from 'antd'
 import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { emitter } from '../../../../utils/emitter';
-import { editClinicService } from '../../../../services/adminService';
 import { useDispatch } from 'react-redux';
 import { editClinic } from '../../../../redux/actions/adminActions.js'
 
@@ -167,7 +166,7 @@ const ModalManageClinic = (props) => {
                 <Col span={12}>
                     <Row>
                         <Flex vertical gap={5}>
-                            <label><FormattedMessage id='manage-clinic.clinic-image' /></label>
+                            <label><FormattedMessage id='manage-clinic.clinic-logo' /></label>
                             <input id='previewImg' type='file' hidden
                                 onChange={(event) => handleOnChangeImage(event)}
                             />

@@ -32,7 +32,7 @@ const ManageSpecialty = () => {
             key: 'id',
         },
         {
-            title: <FormattedMessage id='manage-clinic.clinic-name' />,
+            title: <FormattedMessage id='manage-specialty.specialty-name' />,
             dataIndex: 'name',
             key: 'name',
         },
@@ -90,7 +90,7 @@ const ManageSpecialty = () => {
             <Button
                 style={{ marginBottom: '1rem' }}
                 type='primary' onClick={() => setOpenModal(true)}>
-                <FormattedMessage id='manage-clinic.add' />
+                <FormattedMessage id='manage-specialty.add' />
             </Button>
             <ModalManageSpecialty
                 open={openModal}

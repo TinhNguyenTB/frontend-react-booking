@@ -73,7 +73,13 @@
         "edit": "Update clinic",
         "clinic-name": "Clinic's name",
         "clinic-address": "Clinic's address",
-        "clinic-image": "Clinic's image"
+        "clinic-logo": "Clinic's logo"
+    },
+    "manage-specialty": {
+        "add": "Create a new specialty",
+        "edit": "Update specialty",
+        "specialty-name": "Specialty's name",
+        "specialty-image": "Specialty's image"
     },
     "patient": {
         "detail-doctor": {
