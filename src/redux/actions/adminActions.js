@@ -3,8 +3,8 @@ import {
     getAllCodeService,
     getListUser, deleteUserService, createNewUserService, editUserService,
     getAllDoctors,
-    deleteClinicService, editClinicService
-
+    deleteClinicService, editClinicService,
+    deleteSpecialtyService, editSpecialtyService
 } from "../../services/adminService";
 
 import { getAllSpecialty, getAllClinic } from '../../services/appService'
@@ -252,6 +252,61 @@ export const deleteClinic = (id) => {
             }
         } catch (error) {
             console.log('delete clinic error:', error)
+        }
+    }
+}
+
+export const fetchAllSpecialty = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllSpecialty()
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_LIST_SPECIALTY_SUCCESS,
+                    data: res.data.reverse()
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_LIST_SPECIALTY_FAILED
+                });
+            }
+        } catch (error) {
+            dispatch({
+                type: actionTypes.FETCH_LIST_SPECIALTY_FAILED
+            });
+            console.log('fetch list specialty error:', error)
+        }
+    }
+}
+
+export const editSpecialty = (specialty) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editSpecialtyService(specialty)
+            if (res && res.errCode === 0) {
+                message.success("Update specialty successfully!");
+                dispatch(fetchAllSpecialty())
+            } else {
+                message.error("Update specialty failed");
+            }
+        } catch (error) {
+            console.log('update specialty error:', error)
+        }
+    }
+}
+
+export const deleteSpecialty = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await deleteSpecialtyService(id)
+            if (res && res.errCode === 0) {
+                message.success("Delete specialty successfully!");
+                dispatch(fetchAllSpecialty())
+            } else {
+                message.error("Delete specialty failed");
+            }
+        } catch (error) {
+            console.log('delete specialty error:', error)
         }
     }
 }

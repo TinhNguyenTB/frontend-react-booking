@@ -21,12 +21,7 @@ export const adminMenu = [
         label: <FormattedMessage id='menu.admin.clinic' />, key: '/system/manage-clinic'
     },
     { // Quản lý chuyên khoa
-        label: <FormattedMessage id='menu.admin.specialty' />,
-        children: [
-            {
-                label: <FormattedMessage id='menu.admin.manage-specialty' />, key: '/system/manage-specialty'
-            },
-        ]
+        label: <FormattedMessage id='menu.admin.specialty' />, key: '/system/manage-specialty'
     }
 ];
 

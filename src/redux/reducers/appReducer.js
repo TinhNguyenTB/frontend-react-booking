@@ -3,7 +3,8 @@ import actionTypes from '../actions/actionTypes';
 const initialState = {
     language: 'vi',
     topDoctors: [],
-    listClinic: []
+    listClinic: [],
+    listSpecialty: [],
 }
 
 const appReducer = (state = initialState, action) => {
@@ -36,7 +37,17 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
             }
-
+        // fetch list specialty
+        case actionTypes.FETCH_LIST_SPECIALTY_SUCCESS:
+            state.listSpecialty = action.data
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_LIST_SPECIALTY_FAILED:
+            state.listSpecialty = []
+            return {
+                ...state,
+            }
         default:
             return state;
     }
