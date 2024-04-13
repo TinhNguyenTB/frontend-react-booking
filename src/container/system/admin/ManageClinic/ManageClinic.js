@@ -1,8 +1,8 @@
 import { createNewClinic } from '../../../../services/adminService';
-import { fetchAllClinic, editClinic, deleteClinic } from '../../../../redux/actions/adminActions.js'
+import { fetchAllClinic, deleteClinic } from '../../../../redux/actions/adminActions.js'
 import { useEffect, useState } from 'react';
 import ModalManageClinic from './ModalManageClinic.js';
-import { message, Button, Table, Popconfirm } from 'antd';
+import { message, Button, Table, Popconfirm, Space } from 'antd';
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../../../utils/constant';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
@@ -13,7 +13,7 @@ const ManageClinic = () => {
     const [openModal, setOpenModal] = useState(false);
     const language = useSelector(state => state.app.language);
     const [currentPages, setCurrentPages] = useState(1);
-    const [currentLimit, setCurrentLimit] = useState(6);
+    const [currentLimit, setCurrentLimit] = useState(5);
     const dispatch = useDispatch();
     const listClinic = useSelector(state => state.app.listClinic)
 
@@ -44,13 +44,11 @@ const ManageClinic = () => {
         {
             title: 'Actions',
             render: (_, record) =>
-                <>
-                    <Button
-                        icon={<EditOutlined style={{ color: 'rgb(145,73,0)', marginRight: '0.3rem' }} />}
-                        style={{ marginRight: '1rem' }}
+                <Space>
+                    <Button size='large'
+                        icon={<EditOutlined style={{ color: 'rgb(145,73,0)' }} />}
                         onClick={() => handleEditClinic(record)}
                     >
-                        <FormattedMessage id="manage-user.edit" />
                     </Button>
                     <Popconfirm
                         placement="topRight"
@@ -63,12 +61,9 @@ const ManageClinic = () => {
                         okText={language === LANGUAGES.EN ? "Yes" : "Có"}
                         cancelText={language === LANGUAGES.EN ? "No" : "Không"}
                     >
-                        <Button icon={<DeleteOutlined style={{ color: 'red', marginRight: '0.3rem' }} />}>
-                            <FormattedMessage id="manage-user.delete" />
-                        </Button>
+                        <Button size='large' icon={<DeleteOutlined style={{ color: 'red' }} />}></Button>
                     </Popconfirm>
-
-                </>
+                </Space>
         }
     ];
 
