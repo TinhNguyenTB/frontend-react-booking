@@ -60,11 +60,20 @@ const editSpecialtyService = (specialty) => {
     return axios.put('/api/edit-specialty', specialty)
 }
 
+const getListPatientForDoctor = (data) => {
+    return axios.get(`/api/get-list-patient-for-doctor?doctorId=${data.doctorId}&date=${data.date}`);
+}
+
+const postSendRemedy = (data) => {
+    return axios.post('/api/send-remedy', data)
+}
+
 export {
     getAllCodeService,
     getListUser, createNewUserService, deleteUserService, editUserService,
     getAllDoctors, getDetailInfoDoctor, saveDetailDoctorService,
     saveBulkScheduleDoctor,
     createNewClinic, deleteClinicService, editClinicService,
-    createNewSpecialty, editSpecialtyService, deleteSpecialtyService
+    createNewSpecialty, editSpecialtyService, deleteSpecialtyService,
+    getListPatientForDoctor, postSendRemedy
 }

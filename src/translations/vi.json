@@ -34,8 +34,15 @@
             "manage-handbook": "Quản lý cẩm nang"
         },
         "doctor": {
-            "manage-schedule": "Quản lý lịch khám bệnh",
-            "manage-patient": "Quản lý bệnh nhân"
+            "manage-appointment": "Quản lý lịch khám bệnh",
+            "manage-patient": {
+                "fullName": "Họ và tên",
+                "address": "Địa chỉ liên hệ",
+                "time": "Thời gian khám bệnh",
+                "reason": "Lý do khám",
+                "gender": "Giới tính",
+                "confirm": "Xác nhận"
+            }
         }
     },
     "manage-user": {

@@ -142,6 +142,7 @@ const BookingModal = (props) => {
                 else {
                     message.error('Đặt lịch khám thất bại!')
                 }
+                setIsLoading(false)
             }
             setInfoBooking(defaultValue);
         }

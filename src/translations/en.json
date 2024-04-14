@@ -34,8 +34,15 @@
             "manage-handbook": "Manage handbooks"
         },
         "doctor": {
-            "manage-schedule": "Manage examination schedules",
-            "manage-patient": "Manage Doctor's patient"
+            "manage-appointment": "Manage examination schedules",
+            "manage-patient": {
+                "fullName": "Fullname",
+                "address": "Address",
+                "time": "Medical examination time",
+                "reason": "Reason",
+                "gender": "Gender",
+                "confirm": "Confirm"
+            }
         }
     },
     "manage-user": {

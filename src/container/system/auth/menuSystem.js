@@ -27,11 +27,6 @@ export const adminMenu = [
 
 export const doctorMenu = [
     {
-        label: <FormattedMessage id='menu.doctor.manage-schedule' />,
-        children: [
-            {
-                label: <FormattedMessage id='menu.doctor.manage-schedule' />, key: '/doctor/manage-schedule'
-            }
-        ]
+        label: <FormattedMessage id='menu.doctor.manage-appointment' />, key: '/system/manage-appointment'
     }
 ];
