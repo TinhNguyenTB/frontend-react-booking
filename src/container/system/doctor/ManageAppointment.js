@@ -48,7 +48,8 @@ const ManageAppointment = () => {
             patientId: item.patientId,
             email: item.patientData.email,
             patientName: item.patientData.fullName,
-            timeType: item.timeType
+            timeType: item.timeType,
+            reason: item.reason
         }
         setDataModal(data);
         setOpenModal(true);
@@ -59,14 +60,15 @@ const ManageAppointment = () => {
         setOpenModal(false);
     }
 
-    const sendRemedy = async (dataChild) => {
+    const sendRemedy = async (email, imgBase64) => {
         let res = await postSendRemedy({
-            email: dataChild.email,
-            imgBase64: dataChild.imgBase64,
+            email: email,
+            imgBase64: imgBase64,
             doctorId: dataModal.doctorId,
             patientId: dataModal.patientId,
             timeType: dataModal.timeType,
             patientName: dataModal.patientName,
+            reason: dataModal.reason,
             language: language
         })
         if (res && res.errCode === 0) {
@@ -89,6 +91,11 @@ const ManageAppointment = () => {
             title: <FormattedMessage id='menu.doctor.manage-patient.fullName' />,
             dataIndex: ['patientData', 'fullName'],
             key: 'fullName',
+        },
+        {
+            title: <FormattedMessage id='menu.doctor.manage-patient.email' />,
+            dataIndex: ['patientData', 'email'],
+            key: 'email',
         },
         {
             title: <FormattedMessage id='menu.doctor.manage-patient.time' />,

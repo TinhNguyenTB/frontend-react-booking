@@ -36,13 +36,17 @@
         "doctor": {
             "manage-appointment": "Quản lý lịch khám bệnh",
             "manage-patient": {
+                "email": "Email",
                 "fullName": "Họ và tên",
                 "phone": "số điện thoại",
                 "time": "Thời gian khám bệnh",
                 "reason": "Lý do khám",
                 "gender": "Giới tính",
                 "confirm": "Xác nhận"
-            }
+            },
+            "remedy-title": "Gửi hóa đơn khám bệnh",
+            "remedy-email": "Email bệnh nhân",
+            "remedy-bills": "Hóa đơn"
         }
     },
     "manage-user": {
