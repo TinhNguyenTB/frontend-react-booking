@@ -9,7 +9,7 @@ import dayjs from 'dayjs';
 
 const ManageAppointment = () => {
     const today = dayjs();
-    const [currentDate, setCurrentDate] = useState(today)
+    const [currentDate, setCurrentDate] = useState("")
     const [dataPatients, setDataPatients] = useState([]);
     const [openModal, setOpenModal] = useState(false);
     const [dataModal, setDataModal] = useState({});
@@ -20,24 +20,27 @@ const ManageAppointment = () => {
         if (userInfo && userInfo.id) {
             getDataPatients()
         }
-    }, [userInfo])
+    }, [])
 
     const getDataPatients = async () => {
         let formattedDate = dayjs(currentDate).startOf('day').valueOf(); // Convert to timestamp
         let res = await getListPatientForDoctor({
-            doctorId: userInfo.id,
+            doctorId: userInfo?.id,
             date: formattedDate
-        })
+        });
         if (res && res.errCode === 0) {
             setDataPatients(res.data);
             console.log(res.data)
         }
-    }
+    };
 
     const handleOnChangeDatePicker = (date) => {
         setCurrentDate(date);
-        getDataPatients();
     }
+
+    useEffect(() => {
+        getDataPatients();
+    }, [currentDate])
 
     const handleConfirm = (item) => {
         let data = {
@@ -103,9 +106,9 @@ const ManageAppointment = () => {
             key: 'reason',
         },
         {
-            title: <FormattedMessage id='menu.doctor.manage-patient.address' />,
-            dataIndex: ['patientData', 'address'],
-            key: 'address',
+            title: <FormattedMessage id='menu.doctor.manage-patient.phone' />,
+            dataIndex: ['patientData', 'phonenumber'],
+            key: 'phonenumber',
         },
         {
             title: 'Actions',
@@ -139,6 +142,7 @@ const ManageAppointment = () => {
                             onChange={handleOnChangeDatePicker}
                             format={language === LANGUAGES.VI ? 'DD-MM-YYYY' : 'MM-DD-YYYY'}
                             value={currentDate}
+                            minDate={today}
                         />
                     </Flex>
                 </Col>

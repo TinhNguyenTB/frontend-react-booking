@@ -86,7 +86,7 @@ const ManageSchedule = () => {
         }
     }
 
-    const handleChangeSelect = async (selectedOption) => {
+    const handleChangeSelect = (selectedOption) => {
         setSelectedDoctor(selectedOption)
         let timestamp = dayjs(currentDate).valueOf(); // Convert to timestamp
         setDefaultRangeTime();
@@ -94,7 +94,7 @@ const ManageSchedule = () => {
 
     }
 
-    const handleOnChangeDatePicker = async (date) => {
+    const handleOnChangeDatePicker = (date) => {
         setCurrentDate(date);
         let timestamp = dayjs(date).valueOf(); // Convert to timestamp
         setDefaultRangeTime();

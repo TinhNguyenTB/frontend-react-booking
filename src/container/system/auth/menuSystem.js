@@ -15,7 +15,7 @@ export const adminMenu = [
     },
     {
         // Quản lý kế hoạch khám bệnh của bác sĩ
-        label: <FormattedMessage id='menu.doctor.manage-schedule' />, key: '/system/manage-schedule'
+        label: <FormattedMessage id='menu.admin.manage-schedule' />, key: '/system/manage-schedule'
     },
     {   // Quản lý phòng khám
         label: <FormattedMessage id='menu.admin.clinic' />, key: '/system/manage-clinic'

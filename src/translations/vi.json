@@ -31,13 +31,13 @@
             "specialty": "Chuyên khoa",
             "manage-specialty": "Quản lý chuyên khoa",
             "handbook": "Cẩm nang",
-            "manage-handbook": "Quản lý cẩm nang"
+            "manage-schedule": "Quản lý lịch khám"
         },
         "doctor": {
             "manage-appointment": "Quản lý lịch khám bệnh",
             "manage-patient": {
                 "fullName": "Họ và tên",
-                "address": "Địa chỉ liên hệ",
+                "phone": "số điện thoại",
                 "time": "Thời gian khám bệnh",
                 "reason": "Lý do khám",
                 "gender": "Giới tính",

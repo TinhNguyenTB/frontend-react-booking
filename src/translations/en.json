@@ -31,13 +31,13 @@
             "specialty": "Specialties",
             "manage-specialty": "Manage specialties",
             "handbook": "Handbook",
-            "manage-handbook": "Manage handbooks"
+            "manage-schedule": "Manage examination schedule"
         },
         "doctor": {
             "manage-appointment": "Manage examination schedules",
             "manage-patient": {
                 "fullName": "Fullname",
-                "address": "Address",
+                "phone": "Phonenumber",
                 "time": "Medical examination time",
                 "reason": "Reason",
                 "gender": "Gender",
