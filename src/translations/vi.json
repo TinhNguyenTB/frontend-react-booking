@@ -64,7 +64,10 @@
         "image": "Ảnh dại diện",
         "upload": "Tải ảnh",
         "delete": "Xóa",
-        "edit": "Sửa"
+        "edit": "Sửa",
+        "register": "Đăng ký",
+        "have-account": "Bạn đã có tài khoản?",
+        "login": "Đăng nhập ngay"
     },
     "home-page": {
         "outstanding-doctor": "Bác sĩ nổi bật tuần qua",

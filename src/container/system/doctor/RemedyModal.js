@@ -1,4 +1,4 @@
-import { Avatar, Flex, Image, Col, Row, Input, Modal, message } from 'antd'
+import { Flex, Col, Row, Input, Modal } from 'antd'
 import CommonUtils from '../../../utils/CommonUtils'
 import { useEffect, useState } from 'react'
 import { FormattedMessage } from 'react-intl';

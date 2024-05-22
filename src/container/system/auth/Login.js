@@ -48,7 +48,7 @@ const Login = () => {
                     wrapperCol={{ span: 24 }}
                 >
                     <Typography.Title level={2} style={{ textAlign: 'center' }}>
-                        Login System
+                        Login
                     </Typography.Title>
                     <Form.Item
                         name='email'
