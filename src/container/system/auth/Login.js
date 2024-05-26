@@ -11,13 +11,17 @@ import { useEffect } from 'react';
 const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const isLogin = useSelector(state => state.account.isLogin);
+    const userInfo = useSelector(state => state.account.userInfo);
 
     useEffect(() => {
-        if (isLogin === true) {
+        if (userInfo && userInfo.roleId === process.env.REACT_APP_ROLE_ADMIN ||
+            userInfo && userInfo.roleId === process.env.REACT_APP_ROLE_DOCTOR) {
             navigate(path.SYSTEM)
         }
-    }, [isLogin])
+        else if (userInfo && userInfo.roleId === process.env.REACT_APP_ROLE_PATIENT) {
+            navigate(path.HOME)
+        }
+    }, [userInfo])
 
 
     const onFinish = (values) => {
