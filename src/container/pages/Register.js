@@ -1,16 +1,23 @@
 import './Register.scss';
 import { Select, Input, Button, Row, Col, Flex, message, Typography } from 'antd';
 import { REGEX, LANGUAGES } from '../../utils/constant';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { path } from '../../utils/constant';
+import { register } from '../../services/userService';
+import { fetchGenders } from '../../redux/actions/adminActions';
 
 const Register = () => {
     const language = useSelector(state => state.app.language);
     const genders = useSelector(state => state.admin.genders);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchGenders())
+    }, [])
 
     const defaultValue = {
         email: "",
@@ -116,6 +123,19 @@ const Register = () => {
         setUserInfo({ ...copyState })
     }
 
+    const handleRegister = async () => {
+        let check = checkValidateInput();
+        if (check === true) {
+            let res = await register(userInfo);
+            if (res && res.errCode === 0) {
+                message.success("Register successfully");
+                setUserInfo(defaultValue);
+            }
+            else
+                message.error("Register failed");
+        }
+    }
+
     return (
         <Row justify='center' align='middle' className='register-container'>
             <Col xs={24} sm={16} md={12} lg={12} className='register-content'>
@@ -188,7 +208,9 @@ const Register = () => {
                         </Flex>
                     </Col>
                     <Col span={24}>
-                        <Button type='primary' block size='large'>
+                        <Button type='primary' block size='large'
+                            onClick={() => handleRegister()}
+                        >
                             <FormattedMessage id="manage-user.register" />
                         </Button>
                     </Col>

@@ -8,7 +8,12 @@ const postVerifyBookAppointment = (data) => {
     return axios.post('/api/verify-book-appointment', data)
 }
 
+const register = (data) => {
+    return axios.post('/api/register', data)
+}
+
 export {
     postPatientBookAppointment,
-    postVerifyBookAppointment
+    postVerifyBookAppointment,
+    register
 }
