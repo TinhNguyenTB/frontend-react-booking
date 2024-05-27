@@ -13,9 +13,7 @@
     },
     "booking-modal": {
         "note": "NOTE",
-        "description1": "The information you provide will be used as medical records. When filling in the information, please:",
-        "description2": "Clearly state your full name, capitalizing the first letters, for example: Tran Van Phu",
-        "description3": "Fill in completely and correctly and please check the information again before pressing 'Ok'"
+        "description": "Please log in before booking"
     },
     "about": {
         "title": "Introduce about BookingCare"
@@ -108,20 +106,6 @@
             "text-detail": "See more",
             "payment": "Patients can pay costs in the following forms: ",
             "hide-price": "Hide price list"
-        },
-        "booking-modal": {
-            "title": "Information on scheduling medical examinations",
-            "fullName": "Fullname",
-            "phoneNumber": "Phonenumber",
-            "email": "Email",
-            "address": "Address",
-            "birthday": "Date of birth",
-            "gender": "Gender",
-            "reason": "Reason for examination",
-            "btn-confirm": "Confirm",
-            "btn-cancel": "Cancel",
-            "price-booking": "Free appointment",
-            "price": "Examination price: "
         },
         "verify-email": {
             "success": "Appointment confirmed successfully!",

@@ -13,9 +13,7 @@
     },
     "booking-modal": {
         "note": "LƯU Ý",
-        "description1": "Thông tin anh/chị cung cấp sẽ được sử dụng làm hồ sơ khám bệnh, khi điền thông tin anh/chị vui lòng:",
-        "description2": "Ghi rõ họ và tên, viết hoa những chữ cái đầu tiên, ví dụ: Trần Văn Phú ",
-        "description3": "Điền đầy đủ, đúng và vui lòng kiểm tra lại thông tin trước khi ấn 'Ok'"
+        "description": "Vui lòng đăng nhập trước khi đặt lịch"
     },
     "about": {
         "title": "Giới thiệu về BookingCare"
