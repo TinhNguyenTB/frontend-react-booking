@@ -21,7 +21,7 @@ function App() {
   const location = useLocation()
 
   useEffect(() => {
-    if (location.pathname.startsWith('/system') || location.pathname === '/login') {
+    if (location.pathname.startsWith('/') || location.pathname === '/login') {
       dispatch(fetchUserAccount())
     }
   }, [])

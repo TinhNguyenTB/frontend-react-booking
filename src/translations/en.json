@@ -8,7 +8,7 @@
         "select-doctor": "Choose a good doctor",
         "introduce": "Introduce",
         "about": "About BookingCare",
-        "support": "Support",
+        "login": "Login",
         "welcome": "Welcome"
     },
     "booking-modal": {

@@ -4,22 +4,46 @@ import { LANGUAGES } from '../../../utils/constant';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLanguageApp } from '../../../redux/actions/appActions'
 import { useNavigate } from 'react-router-dom';
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import { UserOutlined, UnlockOutlined, LogoutOutlined, DownOutlined } from '@ant-design/icons';
 import logo from '../../../assets/logo.svg'
 import { path } from '../../../utils/constant';
+import { Dropdown, Space, Button } from 'antd';
+import { doLogout } from '../../../redux/actions/accountAction';
 
 const HomeHeader = (props) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    let language = useSelector(state => state.app.language)
+    let language = useSelector(state => state.app.language);
+    const userInfo = useSelector(state => state.account.userInfo);
 
     const returnToHome = () => {
-        navigate('/');
+        navigate(path.HOME);
     }
 
     const changeLanguage = (language) => {
         dispatch(changeLanguageApp(language))
     }
+
+    const handleLogout = () => {
+        dispatch(doLogout())
+    }
+
+    const items = [
+        {
+            label: <Button style={{ padding: 0 }} type='link'>
+                <FormattedMessage id='admin.system.change-pasword' />
+            </Button>,
+            icon: <UnlockOutlined />,
+            key: 'change-password',
+        },
+        {
+            label: <Button onClick={() => handleLogout()} style={{ padding: 0 }} type='link' >
+                <FormattedMessage id='admin.system.logout' />
+            </Button>,
+            icon: <LogoutOutlined />,
+            key: 'logout',
+        },
+    ];
 
     return (
         <div>
@@ -48,10 +72,6 @@ const HomeHeader = (props) => {
                         </div>
                     </div>
                     <div className='right-content'>
-                        <div className='support'>
-                            <QuestionCircleOutlined />
-                            <FormattedMessage id="homeheader.support" />
-                        </div>
                         <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}>
                             <span onClick={() => {
                                 changeLanguage(LANGUAGES.VI)
@@ -64,11 +84,32 @@ const HomeHeader = (props) => {
                             }}>EN
                             </span>
                         </div>
+                        <div className='login'>
+                            <UserOutlined />
+                            {userInfo ?
+                                <>
+                                    <Dropdown
+                                        menu={{ items }}
+                                        trigger={['click']}
+                                    >
+                                        <Space>
+                                            {userInfo.email}
+                                            <DownOutlined
+                                                style={{ cursor: 'pointer' }}
+                                            />
+                                        </Space>
+                                    </Dropdown>
+                                </>
+                                :
+                                <div onClick={() => navigate(path.LOGIN)}>
+                                    <FormattedMessage id="homeheader.login" />
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     )
 }
 
