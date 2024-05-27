@@ -33,9 +33,11 @@
         },
         "doctor": {
             "manage-appointment": "Manage examination schedules",
+            "select-date": "Select date",
             "manage-patient": {
                 "email": "Email",
-                "fullName": "Fullname",
+                "firstName": "FirstName",
+                "lastName": "Lastname",
                 "phone": "Phonenumber",
                 "time": "Medical examination time",
                 "reason": "Reason",

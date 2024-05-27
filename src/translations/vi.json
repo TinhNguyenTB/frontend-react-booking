@@ -33,9 +33,11 @@
         },
         "doctor": {
             "manage-appointment": "Quản lý lịch khám bệnh",
+            "select-date": "Chọn ngày khám",
             "manage-patient": {
                 "email": "Email",
-                "fullName": "Họ và tên",
+                "firstName": "Tên",
+                "lastName": "Họ",
                 "phone": "số điện thoại",
                 "time": "Thời gian khám bệnh",
                 "reason": "Lý do khám",

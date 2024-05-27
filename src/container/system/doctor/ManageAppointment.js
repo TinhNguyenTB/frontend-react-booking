@@ -47,7 +47,8 @@ const ManageAppointment = () => {
             doctorId: item.doctorId,
             patientId: item.patientId,
             email: item.patientData.email,
-            patientName: item.patientData.fullName,
+            patientFirstName: item.patientData.firstName,
+            patientLastName: item.patientData.lastName,
             timeType: item.timeType,
             reason: item.reason
         }
@@ -67,7 +68,8 @@ const ManageAppointment = () => {
             doctorId: dataModal.doctorId,
             patientId: dataModal.patientId,
             timeType: dataModal.timeType,
-            patientName: dataModal.patientName,
+            patientFirstName: dataModal.patientFirstName,
+            patientLastName: dataModal.patientLastName,
             reason: dataModal.reason,
             language: language
         })
@@ -88,9 +90,14 @@ const ManageAppointment = () => {
             key: 'patientId',
         },
         {
-            title: <FormattedMessage id='menu.doctor.manage-patient.fullName' />,
-            dataIndex: ['patientData', 'fullName'],
-            key: 'fullName',
+            title: <FormattedMessage id='menu.doctor.manage-patient.firstName' />,
+            dataIndex: ['patientData', 'firstName'],
+            key: 'firstName',
+        },
+        {
+            title: <FormattedMessage id='menu.doctor.manage-patient.lastName' />,
+            dataIndex: ['patientData', 'lastName'],
+            key: 'lastName',
         },
         {
             title: <FormattedMessage id='menu.doctor.manage-patient.email' />,
@@ -139,12 +146,12 @@ const ManageAppointment = () => {
                 sendRemedy={sendRemedy}
             />
             <Typography.Title level={3} style={{ textAlign: 'center' }}>
-                Quản lý bệnh nhân khám bệnh
+                <FormattedMessage id="menu.doctor.manage-appointment" />
             </Typography.Title>
             <Row>
                 <Col span={8}>
                     <Flex gap={'0.5rem'} align="center">
-                        <label>Chọn ngày khám:</label>
+                        <FormattedMessage id="menu.doctor.select-date" />
                         <DatePicker
                             onChange={handleOnChangeDatePicker}
                             format={language === LANGUAGES.VI ? 'DD-MM-YYYY' : 'MM-DD-YYYY'}
