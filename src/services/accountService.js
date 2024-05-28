@@ -12,6 +12,13 @@ const handleLogout = () => {
     return axios.post("/api/logout")
 }
 
+const handleChangePassword = (data) => {
+    return axios.post("/api/change-password", data)
+}
+
 export {
-    handleLogin, getUserAccount, handleLogout
+    handleLogin,
+    getUserAccount,
+    handleLogout,
+    handleChangePassword
 }

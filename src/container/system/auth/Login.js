@@ -31,11 +31,11 @@ const Login = () => {
     const handleUserLogin = async (email, password) => {
         try {
             let res = await handleLogin(email, password);
-            if (res && res.errCode !== 0) {
-                message.error(res.message)
-            }
             if (res && res.errCode === 0) {
                 dispatch(doLogin(res.data.user));
+            }
+            else {
+                message.error(res.data.errMessage)
             }
         } catch (error) {
             console.log(error);

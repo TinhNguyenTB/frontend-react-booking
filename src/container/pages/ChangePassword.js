@@ -1,11 +1,22 @@
 import { Form, Input, Button, Row, Col, Typography, message } from 'antd';
 import './ChangePassword.scss';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
+import { handleChangePassword } from '../../services/accountService';
 
 const ChangePassword = () => {
 
-    const onFinish = (values) => {
-        console.log(values.email, values.oldPassword, values.confirmPassword)
+    const onFinish = async (values) => {
+        let res = await handleChangePassword({
+            email: values.email,
+            password: values.oldPassword,
+            newPassword: values.confirmPassword
+        })
+        if (res && res.errCode === 0) {
+            message.success(res.message);
+        }
+        else {
+            message.error(res.message);
+        }
     };
 
     return (

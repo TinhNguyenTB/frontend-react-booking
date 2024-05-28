@@ -30,7 +30,7 @@ const HomeHeader = (props) => {
 
     const items = [
         {
-            label: <Button style={{ padding: 0 }} type='link'>
+            label: <Button onClick={() => navigate(path.CHANGE_PASSWORD)} style={{ padding: 0 }} type='link'>
                 <FormattedMessage id='admin.system.change-pasword' />
             </Button>,
             icon: <UnlockOutlined />,
