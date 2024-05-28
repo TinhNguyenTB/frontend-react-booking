@@ -3,6 +3,7 @@ export const path = {
     LOGIN: '/login',
     REGISTER: '/register',
     LOG_OUT: '/logout',
+    CHANGE_PASSWORD: '/change-password',
     SYSTEM: '/system/*',
     DETAIL_DOCTOR: '/detail-doctor/:id',
     DETAIL_SPECIALTY: '/detail-specialty/:id',

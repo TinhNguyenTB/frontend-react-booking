@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { fetchUserAccount } from './redux/actions/accountAction';
 import About from './container/pages/About';
 import Register from './container/pages/Register';
+import ChangePassword from './container/pages/ChangePassword';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path={path.DETAIL_CLINIC} element={<DetailClinic />} />
         <Route path={path.VERIFY_EMAIL_BOOKING} element={<VerifyEmail />} />
         <Route path={path.LOGIN} element={<Login />} />
+        <Route path={path.CHANGE_PASSWORD} element={<ChangePassword />} />
         <Route path={path.REGISTER} element={<Register />} />
         <Route path={path.SYSTEM} element={<System />} />
         <Route path='*' element={<PageNotFound />} />
