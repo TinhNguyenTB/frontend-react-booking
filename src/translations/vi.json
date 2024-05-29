@@ -129,7 +129,7 @@
         }
     },
     "appointment": {
-        "title": "Lịch sử đặt lịch",
+        "title-history": "Lịch sử đặt lịch",
         "doctorName": "Tên bác sĩ",
         "doctorEmail": "Email bác sĩ",
         "time": "Thời gian",

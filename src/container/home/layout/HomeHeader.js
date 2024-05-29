@@ -31,10 +31,10 @@ const HomeHeader = (props) => {
     const items = [
         {
             label: <Button onClick={() => navigate(path.APPOINTMENT)} style={{ padding: 0 }} type='link'>
-                <FormattedMessage id='appointment.title' />
+                <FormattedMessage id='appointment.title-history' />
             </Button>,
             icon: <HistoryOutlined />,
-            key: 'appointment',
+            key: 'histories',
         }, ,
         {
             label: <Button onClick={() => navigate(path.CHANGE_PASSWORD)} style={{ padding: 0 }} type='link'>

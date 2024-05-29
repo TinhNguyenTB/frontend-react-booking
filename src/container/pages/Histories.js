@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 import { Table, Image, Col, Row, Typography } from "antd";
 import { getHistories } from '../../services/userService';
 import { useEffect, useState } from 'react';
-import './Appointment.scss'
+import './Histories.scss'
 
-const Appointment = () => {
+const Histories = () => {
     const language = useSelector(state => state.app.language);
     const userInfo = useSelector(state => state.account.userInfo);
     const [histories, setHistories] = useState([]);
@@ -22,7 +22,6 @@ const Appointment = () => {
         let res = await getHistories({ patientId: userInfo?.id });
         if (res && res.errCode === 0) {
             setHistories(res.data)
-            console.log(res.data)
         }
     }
 
@@ -69,7 +68,7 @@ const Appointment = () => {
         <Layout>
             <div style={{ margin: '2rem' }}>
                 <Typography.Title level={2} style={{ textAlign: 'center' }}>
-                    <FormattedMessage id='appointment.title' />
+                    <FormattedMessage id='appointment.title-history' />
                 </Typography.Title>
                 {isOpenPreviewImg && (
                     <Image
@@ -100,4 +99,4 @@ const Appointment = () => {
     )
 }
 
-export default Appointment
+export default Histories
