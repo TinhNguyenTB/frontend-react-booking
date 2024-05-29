@@ -8,11 +8,14 @@ import { changeLanguageApp } from '../../redux/actions/appActions';
 import './SystemHeader.scss'
 import Navigation from './auth/Navigation';
 import { doLogout } from '../../redux/actions/accountAction';
+import { path } from '../../utils/constant';
+import { useNavigate } from 'react-router-dom';
 
 const SystemHeader = () => {
     const userInfo = useSelector(state => state.account.userInfo);
     const language = useSelector(state => state.app.language);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         dispatch(doLogout())
@@ -20,7 +23,7 @@ const SystemHeader = () => {
 
     const items = [
         {
-            label: <Button style={{ padding: 0 }} type='link'>
+            label: <Button onClick={() => navigate(path.CHANGE_PASSWORD)} style={{ padding: 0 }} type='link'>
                 <FormattedMessage id='admin.system.change-pasword' />
             </Button>,
             icon: <UnlockOutlined />,

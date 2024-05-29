@@ -114,6 +114,16 @@
             "failed": "Appointment schedule does not exist or has been confirmed."
         }
     },
+    "appointment": {
+        "title": "Booking history",
+        "doctorName": "Doctor's name",
+        "doctorEmail": "Doctor's email",
+        "time": "Time",
+        "status": "Status",
+        "date": "Date",
+        "reason": "Medical examination reason",
+        "bill": "Bill"
+    },
     "admin": {
         "manage-doctor": {
             "title": "Doctor's information",

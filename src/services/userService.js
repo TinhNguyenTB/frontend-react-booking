@@ -12,8 +12,13 @@ const register = (data) => {
     return axios.post('/api/register', data)
 }
 
+const getHistories = (id) => {
+    return axios.post('/api/histories', id)
+}
+
 export {
     postPatientBookAppointment,
     postVerifyBookAppointment,
-    register
+    register,
+    getHistories
 }

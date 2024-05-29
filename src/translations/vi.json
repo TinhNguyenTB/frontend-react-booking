@@ -128,6 +128,16 @@
             "failed": "Lịch hẹn không tồn tại hoặc đã được xác nhận."
         }
     },
+    "appointment": {
+        "title": "Lịch sử đặt lịch",
+        "doctorName": "Tên bác sĩ",
+        "doctorEmail": "Email bác sĩ",
+        "time": "Thời gian",
+        "status": "Trạng thái",
+        "date": "Ngày",
+        "reason": "Lý do khám",
+        "bill": "Hóa đơn"
+    },
     "admin": {
         "manage-doctor": {
             "title": "Thông tin bác sĩ",
