@@ -4,7 +4,7 @@ import { LANGUAGES } from '../../../utils/constant';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLanguageApp } from '../../../redux/actions/appActions'
 import { useNavigate } from 'react-router-dom';
-import { UserOutlined, UnlockOutlined, LogoutOutlined, DownOutlined, HistoryOutlined } from '@ant-design/icons';
+import { UserOutlined, UnlockOutlined, LogoutOutlined, DownOutlined, HistoryOutlined, CalendarOutlined } from '@ant-design/icons';
 import logo from '../../../assets/logo.svg'
 import { path } from '../../../utils/constant';
 import { Dropdown, Space, Button } from 'antd';
@@ -30,12 +30,19 @@ const HomeHeader = (props) => {
 
     const items = [
         {
-            label: <Button onClick={() => navigate(path.APPOINTMENT)} style={{ padding: 0 }} type='link'>
+            label: <Button onClick={() => navigate(`/appointment/${userInfo.id}`)} style={{ padding: 0 }} type='link'>
+                <FormattedMessage id='appointment.title' />
+            </Button>,
+            icon: <CalendarOutlined />,
+            key: 'appointment',
+        },
+        {
+            label: <Button onClick={() => navigate(path.HISTORIES)} style={{ padding: 0 }} type='link'>
                 <FormattedMessage id='appointment.title-history' />
             </Button>,
             icon: <HistoryOutlined />,
             key: 'histories',
-        }, ,
+        },
         {
             label: <Button onClick={() => navigate(path.CHANGE_PASSWORD)} style={{ padding: 0 }} type='link'>
                 <FormattedMessage id='admin.system.change-pasword' />

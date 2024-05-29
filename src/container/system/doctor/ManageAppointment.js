@@ -30,7 +30,6 @@ const ManageAppointment = () => {
         });
         if (res && res.errCode === 0) {
             setDataPatients(res.data);
-            console.log(res.data)
         }
     };
 

@@ -16,9 +16,19 @@ const getHistories = (id) => {
     return axios.post('/api/histories', id)
 }
 
+const getAppointment = (id) => {
+    return axios.get(`/api/appointment?id=${id}`)
+}
+
+const deleteAppointment = (patientId) => {
+    return axios.delete('/api/delete-appointment', { data: { id: patientId } })
+}
+
 export {
     postPatientBookAppointment,
     postVerifyBookAppointment,
     register,
-    getHistories
+    getHistories,
+    getAppointment,
+    deleteAppointment
 }

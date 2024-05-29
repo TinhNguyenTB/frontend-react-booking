@@ -116,6 +116,7 @@
     },
     "appointment": {
         "title-history": "Booking history",
+        "title": "Appointments available",
         "doctorName": "Doctor's name",
         "doctorEmail": "Doctor's email",
         "time": "Time",
