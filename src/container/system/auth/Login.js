@@ -82,6 +82,8 @@ const Login = () => {
                         <Button type="primary" htmlType="submit" block>
                             Log in
                         </Button>
+                        <div style={{ textAlign: 'center' }}>Don't have an account ?<Button type='link' onClick={() => navigate(path.REGISTER)}>Register</Button></div>
+
                     </Form.Item>
                 </Form>
             </Col>

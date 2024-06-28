@@ -10,6 +10,7 @@ import ManageSchedule from '../container/system/admin/ManageSchedule/ManageSched
 import ManageClinic from '../container/system/admin/ManageClinic/ManageClinic.js';
 import ManageSpecialty from '../container/system/admin/ManageSpecialty/ManageSpecialty.js';
 import ManageAppointment from '../container/system/doctor/ManageAppointment.js';
+import ManageHistory from '../container/system/admin/ManageHistory/ManageHistory.js';
 
 
 const System = () => {
@@ -25,6 +26,7 @@ const System = () => {
                 <Route path='manage-clinic' element={<ManageClinic />} />
                 <Route path='manage-specialty' element={<ManageSpecialty />} />
                 <Route path='manage-appointment' element={<ManageAppointment />} />
+                <Route path='manage-histories' element={<ManageHistory />} />
                 <Route path='*' element={isLogin ? <DashBoard /> : <Unauthentication />} />
             </Routes>
         </div>

@@ -49,9 +49,9 @@ const DetailDoctor = () => {
                             {language === LANGUAGES.VI ? nameVi : nameEn}
                         </div>
                         <div className='down'>
-                            {detailDoctor.Markdown && detailDoctor.Markdown.description
+                            {detailDoctor.doctorInfoData && detailDoctor.doctorInfoData.description
                                 &&
-                                <span>{detailDoctor.Markdown.description}</span>
+                                <span>{detailDoctor.doctorInfoData.description}</span>
                             }
                         </div>
                     </div>
@@ -69,12 +69,9 @@ const DetailDoctor = () => {
                     </div>
                 </div>
                 <div className='detail-infor-doctor'>
-                    {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML
+                    {detailDoctor && detailDoctor.doctorInfoData && detailDoctor.doctorInfoData.contentHTML
                         &&
-                        <div dangerouslySetInnerHTML={{ __html: detailDoctor.Markdown.contentHTML }}
-                            style={{}}
-                        >
-                        </div>
+                        <div dangerouslySetInnerHTML={{ __html: detailDoctor.doctorInfoData.contentHTML }}></div>
                     }
                 </div>
             </div >

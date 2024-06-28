@@ -68,6 +68,14 @@ const postSendRemedy = (data) => {
     return axios.post('/api/send-remedy', data)
 }
 
+const getAllHistories = () => {
+    return axios.get(`/api/histories-all`)
+}
+
+const getUserById = (id) => {
+    return axios.get(`/api/get-user-by-id?id=${id}`)
+}
+
 export {
     getAllCodeService,
     getListUser, createNewUserService, deleteUserService, editUserService,
@@ -75,5 +83,7 @@ export {
     saveBulkScheduleDoctor,
     createNewClinic, deleteClinicService, editClinicService,
     createNewSpecialty, editSpecialtyService, deleteSpecialtyService,
-    getListPatientForDoctor, postSendRemedy
+    getListPatientForDoctor, postSendRemedy,
+    getAllHistories,
+    getUserById
 }

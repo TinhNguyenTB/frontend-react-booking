@@ -29,7 +29,9 @@
             "specialty": "Chuyên khoa",
             "manage-specialty": "Quản lý chuyên khoa",
             "handbook": "Cẩm nang",
-            "manage-schedule": "Quản lý lịch khám"
+            "manage-schedule": "Quản lý lịch khám",
+            "history": "Lịch sử",
+            "manage-histories": "Quản lý lịch sử khám bệnh"
         },
         "doctor": {
             "manage-appointment": "Quản lý lịch khám bệnh",
@@ -94,6 +96,19 @@
         "edit": "Cập nhật chuyên khoa",
         "specialty-name": "Tên chuyên khoa",
         "specialty-image": "Ảnh chuyên khoa"
+    },
+    "manage-history": {
+        "patient-info": "Thông tin bệnh nhân",
+        "patientId": "Id bệnh nhân",
+        "email": "Email",
+        "first-name": "Tên",
+        "last-name": "Họ",
+        "phone-number": "Số điện thoại",
+        "gender": "Giới tính",
+        "address": "Địa chỉ",
+        "reason": "Lý do khám",
+        "bill": "Hóa đơn",
+        "doctor-name": "Tên bác sĩ"
     },
     "patient": {
         "detail-doctor": {

@@ -29,7 +29,9 @@
             "specialty": "Specialties",
             "manage-specialty": "Manage specialties",
             "handbook": "Handbook",
-            "manage-schedule": "Manage examination schedule"
+            "manage-schedule": "Manage examination schedule",
+            "history": "History",
+            "manage-histories": "Manage histories"
         },
         "doctor": {
             "manage-appointment": "Manage examination schedules",
@@ -94,6 +96,19 @@
         "edit": "Update specialty",
         "specialty-name": "Specialty's name",
         "specialty-image": "Specialty's image"
+    },
+    "manage-history": {
+        "patient-info": "Patient information",
+        "patientId": "Patient's Id",
+        "email": "Email",
+        "first-name": "FirstName",
+        "last-name": "LastName",
+        "phone-number": "PhoneNumber",
+        "gender": "Gender",
+        "address": "Address",
+        "reason": "Reason",
+        "bill": "Bill",
+        "doctor-name": "Doctor's name"
     },
     "patient": {
         "detail-doctor": {

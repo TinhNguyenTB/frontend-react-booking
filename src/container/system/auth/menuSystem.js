@@ -22,6 +22,9 @@ export const adminMenu = [
     },
     { // Quản lý chuyên khoa
         label: <FormattedMessage id='menu.admin.specialty' />, key: '/system/manage-specialty'
+    },
+    { // Quản lý lich su kham benh
+        label: <FormattedMessage id='menu.admin.history' />, key: '/system/manage-histories'
     }
 ];
 
