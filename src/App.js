@@ -17,6 +17,9 @@ import Register from './container/pages/Register';
 import ChangePassword from './container/pages/ChangePassword';
 import Histories from './container/pages/Histories';
 import Appointment from './container/pages/Appointment';
+import AllDoctor from './container/pages/AllDoctor';
+import AllClinic from './container/pages/AllClinic';
+import AllSpecialty from './container/pages/AllSpecialty';
 
 
 function App() {
@@ -42,6 +45,9 @@ function App() {
         <Route path={path.LOGIN} element={<Login />} />
         <Route path={path.HISTORIES} element={<Histories />} />
         <Route path={path.APPOINTMENT} element={<Appointment />} />
+        <Route path={path.ALL_DOCTOR} element={<AllDoctor />} />
+        <Route path={path.ALL_CLINIC} element={<AllClinic />} />
+        <Route path={path.ALL_SPECIALTY} element={<AllSpecialty />} />
         <Route path={path.CHANGE_PASSWORD} element={<ChangePassword />} />
         <Route path={path.REGISTER} element={<Register />} />
         <Route path={path.SYSTEM} element={<System />} />

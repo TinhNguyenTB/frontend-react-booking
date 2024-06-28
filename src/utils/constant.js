@@ -11,7 +11,10 @@ export const path = {
     DETAIL_SPECIALTY: '/detail-specialty/:id',
     DETAIL_CLINIC: '/detail-clinic/:id',
     VERIFY_EMAIL_BOOKING: '/verify-booking',
-    ABOUT: '/about'
+    ABOUT: '/about',
+    ALL_DOCTOR: '/doctors',
+    ALL_CLINIC: '/clinics',
+    ALL_SPECIALTY: '/specialties'
 };
 
 export const LANGUAGES = {

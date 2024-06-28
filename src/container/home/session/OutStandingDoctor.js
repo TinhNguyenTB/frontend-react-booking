@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { LANGUAGES } from "../../../utils/constant";
+import { LANGUAGES, path } from "../../../utils/constant";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
@@ -34,7 +34,9 @@ const OutStandingDoctor = (props) => {
             <div className='section-container'>
                 <div className='section-header'>
                     <span className='title-section'><FormattedMessage id="home-page.outstanding-doctor" /></span>
-                    <Button className='btn-section'><FormattedMessage id="home-page.more-info" /></Button>
+                    <Button onClick={() => navigate(path.ALL_DOCTOR)} className='btn-section'>
+                        <FormattedMessage id="home-page.more-info" />
+                    </Button>
                 </div>
                 <div className='section-body'>
                     <Slider {...props.settings}>

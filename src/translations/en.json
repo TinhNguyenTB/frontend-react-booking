@@ -111,6 +111,9 @@
         "doctor-name": "Doctor's name"
     },
     "patient": {
+        "doctor-for-you": "Doctor for you",
+        "clinic-for-you": "Clinic for you",
+        "specialty-for-you": "Specialty for you",
         "detail-doctor": {
             "schedule": "schedule",
             "no-schedule": " Doctors do not have appointments during this time, please choose another time.",

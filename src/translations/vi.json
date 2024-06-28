@@ -111,6 +111,9 @@
         "doctor-name": "Tên bác sĩ"
     },
     "patient": {
+        "doctor-for-you": "Bác sĩ dành cho bạn",
+        "clinic-for-you": "Cơ sở y tế dành cho bạn",
+        "specialty-for-you": "Chuyên khoa dành cho bạn",
         "detail-doctor": {
             "schedule": "Lịch khám",
             "no-schedule": " Bác sĩ không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác.",

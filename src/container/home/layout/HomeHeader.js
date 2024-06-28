@@ -72,15 +72,15 @@ const HomeHeader = (props) => {
                             <div className='menu-title'><b><FormattedMessage id="homeheader.introduce" /></b></div>
                             <div className='subs-title'><FormattedMessage id="homeheader.about" /></div>
                         </div>
-                        <div className='child-content'>
+                        <div className='child-content' onClick={() => navigate(path.ALL_SPECIALTY)}>
                             <div className='menu-title'><b><FormattedMessage id="homeheader.speciality" /> </b></div>
                             <div className='subs-title'><FormattedMessage id="homeheader.searchdoctor" /></div>
                         </div>
-                        <div className='child-content'>
+                        <div className='child-content' onClick={() => navigate(path.ALL_CLINIC)}>
                             <div className='menu-title'><b><FormattedMessage id="homeheader.health-facility" /></b></div>
                             <div className='subs-title'><FormattedMessage id="homeheader.select-room" /></div>
                         </div>
-                        <div className='child-content'>
+                        <div className='child-content' onClick={() => navigate(path.ALL_DOCTOR)}>
                             <div className='menu-title'><b><FormattedMessage id="homeheader.doctor" /></b></div>
                             <div className='subs-title'><FormattedMessage id="homeheader.select-doctor" /></div>
                         </div>

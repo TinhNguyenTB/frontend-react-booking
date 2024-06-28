@@ -1,12 +1,12 @@
 import Slider from "react-slick";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FormattedMessage } from 'react-intl';
 import { Button } from 'antd';
 import './MedicalFacility.scss'
-import { getAllClinic } from "../../../services/appService";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllClinic } from "../../../redux/actions/adminActions";
+import { path } from "../../../utils/constant";
 
 const MedicalFacility = (props) => {
     const dataClinics = useSelector(state => state.app.listClinic)
@@ -30,7 +30,7 @@ const MedicalFacility = (props) => {
                     <span className='title-section'>
                         <FormattedMessage id="home-page.medical-facility" />
                     </span>
-                    <Button className='btn-section'>
+                    <Button onClick={() => navigate(path.ALL_CLINIC)} className='btn-section'>
                         <FormattedMessage id="home-page.more-info" />
                     </Button>
                 </div>
